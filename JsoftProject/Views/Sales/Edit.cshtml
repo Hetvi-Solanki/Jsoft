@@ -1,0 +1,150 @@
+﻿@model JsoftProject.Models.trnSale
+
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update Sales Details</h2>
+
+
+<style>
+    .btn {
+        /* background-color: blue !important;*/
+        background-color: #337ab7;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+        .btn:hover {
+            color: purple;
+            font-size: large;
+            background-color: cornflowerblue;
+        } 
+</style>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+   
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.SalesID)
+        @Html.HiddenFor(model => model.InvoiceType)
+        @Html.HiddenFor(model => model.AccountID)
+        @Html.HiddenFor(model => model.SalesType)
+        @Html.HiddenFor(model => model.VoucherNo)
+        @Html.HiddenFor(model => model.VoucherDate)
+        @Html.HiddenFor(model => model.AddBy)
+        @Html.HiddenFor(model => model.AddDate)
+        @Html.HiddenFor(model => model.OutstandingAmount)
+        <div class="form-group">
+            @Html.LabelFor(model => model.SalesType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="margin-top:10px">
+                @{
+
+                    string a = Model.SalesType.ToString();
+
+                    if (a == "SLS")
+                    {
+                        <p>Sales</p>
+                    }
+                    else if (a == "SLSR")
+                    {
+                        <p>Sales Return</p>
+                    }
+
+                }
+                @Html.ValidationMessageFor(model => model.SalesType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VoucherNo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="margin-top:10px">
+                @Html.DisplayFor(model => model.VoucherNo)
+                @Html.ValidationMessageFor(model => model.VoucherNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VoucherDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="margin-top:10px">
+
+                <p>
+                    @String.Format("{0:dd/MM/yyyy}", Model.VoucherDate)
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-top:10px">
+            @Html.LabelFor(model => model.AccountID, "Account Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="margin-top:10px">
+                <p>@ViewBag.acc</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.InvoiceType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="margin-top:10px">
+                @Html.DisplayFor(model => model.InvoiceType)
+            </div>
+        </div>
+
+        <div class="form-group" style="color:red">
+            @Html.LabelFor(model => model.TotalAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TotalAmount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TotalAmount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="color:blue">
+            @Html.LabelFor(model => model.CashAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CashAmount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CashAmount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="color:blue">
+            @Html.LabelFor(model => model.ChequeAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ChequeAmount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ChequeAmount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Remarks, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "ViewDetails", "Sales", null, new { @class = "btn" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

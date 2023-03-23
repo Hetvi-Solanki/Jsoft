@@ -1,0 +1,62 @@
+﻿@model IEnumerable<JsoftProject.Models.mstTax>
+
+@{
+    ViewBag.Title = "Tax Details";
+}
+
+<h2>Tax Details</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success", style = "float: right; font-size:large;" })
+</p>
+
+
+
+
+<table class="table">
+    <tr style="color:red; font-size:large;">
+        <th>
+            @Html.DisplayNameFor(model => model.TaxName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SGSTPrc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CGSTPrc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IGSTPrc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+      
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaxName)
+        </td>
+        <td style = "text-align: right">
+            @Html.DisplayFor(modelItem => item.SGSTPrc)
+        </td>
+        <td style = "text-align: right">
+            @Html.DisplayFor(modelItem => item.CGSTPrc)
+        </td>
+        <td style = "text-align: right">
+            @Html.DisplayFor(modelItem => item.IGSTPrc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+       
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TaxID }, new { @class = "btn btn-success" }) 
+            @Html.ActionLink("Details", "Details", new { id=item.TaxID }, new { @class = "btn btn-primary" }) 
+            @Html.ActionLink("Delete", "Delete", new { id=item.TaxID }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

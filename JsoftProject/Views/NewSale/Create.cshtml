@@ -1,0 +1,253 @@
+﻿@model JsoftProject.Models.NewSaleModel
+@using JsoftProject.Models
+
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Add Sale Details</h2>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" integrity="sha512-ORdA3pLqamjz7h1M/CYAyNX7V9Rfjg26t0GvH8dP93y5R5Q/J1fiC5vI8aP4i9Xn3J4jDrn/ez8dDyCn1i98Ow==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+    .btn {
+        /* background-color: blue !important;*/
+        background-color: #337ab7;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+        .btn:hover {
+            color: purple;
+            font-size: large;
+            background-color: cornflowerblue;
+        }
+
+    body {
+        position: relative;
+        min-height: 100vh;
+    }
+
+    .bottom-right {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 700px;
+        background-color: #d6e0f5;
+        border: 2px solid blue;
+        padding: 2px;
+        margin-top: 25px;
+    }
+</style>
+
+
+@if (ViewBag.flag == "1st")
+{
+
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div style="width: 100%;">
+            <div style="width: 45%; height: 100px; float: left;">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.trnSale.VoucherNo, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    <div class="col-md-10">
+                        <p>@ViewBag.VoucherNo</p>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.trnSale.VoucherDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+
+                        <p>@ViewBag.VoucherDate</p>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div style="margin-left: 50%; height: 100px;">
+
+
+                <div class="form-group right">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.trnSale.mstAccount.AccountName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+
+                            @Html.DropDownListFor(model => model.trnSale.AccountID, new SelectList(ViewBag.AccountList, "AccountID", "AccountName"),
+                                          htmlAttributes: new { @class = "form-control" })
+
+
+                            @Html.ValidationMessageFor(model => model.trnSale.AccountID, "", new { @class = "text-danger" })
+
+                        </div>
+
+                    </div>
+                    <br />
+                    <br />
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.trnSale.SalesType, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+
+                            @Html.DropDownListFor(model => model.trnSale.SalesType, new List<SelectListItem>
+                            {
+                                new SelectListItem { Value = "SLS", Text = "Sales" },
+                                new SelectListItem { Value = "SLSR", Text = "Sales Return" }
+                            }, "--Select--", new { @class = "form-control" })
+
+
+                            @Html.ValidationMessageFor(model => model.trnSale.SalesType, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <table>
+            <tr>
+                <th>Item Name</th>
+                <th>Tax</th>
+                <th>Pieces</th>
+                <th>Gross Weight</th>
+                <th>Net Weight</th>
+            </tr>
+
+
+
+
+            @for (int i = 0; i < 4; i++)
+            {
+                <tr>
+                    <td>
+                        @Html.DropDownListFor(model => model.trnSaleItems[i].ItemID, new SelectList(ViewBag.ItemList, "ItemID", "ItemName"),
+                            htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.trnSaleItems[i].mstItem.ItemName, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(model => model.trnSaleItems[i].TaxID, new SelectList(ViewBag.Taxes, "TaxID", "TaxName"),
+                            htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.trnSaleItems[i].mstTax.TaxName, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.trnSaleItems[i].Pcs, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.trnSaleItems[i].Pcs, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.trnSaleItems[i].GrossWt, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.trnSaleItems[i], "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.trnSaleItems[i].NetWt, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.trnSaleItems[i].NetWt, "", new { @class = "text-danger" })
+                    </td>
+                    
+                </tr>
+
+            }
+
+
+
+
+        </table>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="hidden" name="variable" value="@ViewBag.flag" />
+                <input type="submit" value="Save Items" class="btn" id="nodisplay" />
+            </div>
+        </div>
+
+    }
+
+}
+
+else if (ViewBag.flag == "2nd")
+{
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div style="width: 100%;">
+            <div style="width: 45%; height: 100px; float: left;">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.trnSale.VoucherNo, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    <div class="col-md-10">
+                        @Html.HiddenFor(model => model.trnSale.VoucherNo)
+                        <p>@Html.DisplayFor(model => model.trnSale.VoucherNo)</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.trnSale.VoucherDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+
+                        @Html.HiddenFor(model => model.trnSale.VoucherDate)
+                        <p>@string.Format("{0:dd-MM-yyyy}", Model.trnSale.VoucherDate)</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div style="margin-left: 50%; height: 100px;">
+
+
+                <div class="form-group right">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.trnSale.mstAccount.AccountName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+
+                            @Html.HiddenFor(model => model.trnSale.AccountID)
+                            <p>@ViewBag.acc</p>
+
+                        </div>
+
+                    </div>
+                    <br />
+                    <br />
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.trnSale.SalesType, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @{
+                                @Html.HiddenFor(model => model.trnSale.SalesType)
+                                string a = Model.trnSale.SalesType.ToString();
+
+                                if (a == "PUR")
+                                {
+                                    <p>Sale</p>
+                                }
+                                else if (a == "PURR")
+                                {
+                                    <p>Sale Return</p>
+                                }
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+}
+
+
+

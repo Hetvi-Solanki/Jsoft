@@ -1,0 +1,247 @@
+﻿@model JsoftProject.Models.trnSale
+@using GridMvc.Html;
+
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Add Sale Details</h2>
+
+<style>
+    .btn {
+        /* background-color: blue !important;*/
+        background-color: #337ab7;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+        .btn:hover {
+            color: purple;
+            font-size: large;
+            background-color: cornflowerblue;
+        }
+</style>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div style="width: 100%;">
+        <div style="width: 45%; height: 100px; float: left;">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.VoucherNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @{
+                        if (ViewBag.flag == "1st")
+                        {
+                            <p>@ViewBag.VoucherNo</p>
+                        }
+                        else if (ViewBag.flag == "2nd")
+                        {
+                            <p>@Html.DisplayFor(model => model.VoucherNo)</p>
+                        }
+                    }
+
+
+                    @* @Html.EditorFor(model => model.VoucherNo, new { htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.ValidationMessageFor(model => model.VoucherNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.VoucherDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @{
+                        if (ViewBag.flag == "1st")
+                        {
+                            <p>@ViewBag.VoucherDate</p>
+                        }
+                        else if (ViewBag.flag == "2nd")
+                        {
+                            @*<h4>@Html.DisplayFor(model => model.VoucherDate)</h4>*@
+                            <p>@string.Format("{0:dd-MM-yyyy}", Model.VoucherDate)</p>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+
+        <div style="margin-left: 50%; height: 100px;">
+
+
+            <div class="form-group right">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.mstAccount.AccountName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @if (ViewBag.flag == "1st")
+                        {
+                            @Html.DropDownListFor(model => model.AccountID, new SelectList(ViewBag.AccountList, "AccountID", "AccountName"),
+                                          htmlAttributes: new { @class = "form-control" })
+
+
+                            @Html.ValidationMessageFor(model => model.AccountID, "", new { @class = "text-danger" })
+                        }
+                        else if (ViewBag.flag == "2nd")
+                        {
+                            <p>@ViewBag.acc</p>
+                        }
+                    </div>
+
+                </div>
+                <br />
+                <br />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SalesType, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @if (ViewBag.flag == "1st")
+                        {
+                            @Html.DropDownListFor(model => model.SalesType, new List<SelectListItem>
+                            {
+                                new SelectListItem { Value = "SLS", Text = "Sales" },
+                                new SelectListItem { Value = "SLSR", Text = "Sales Return" }
+                            }, "--Select--", new { @class = "form-control" })
+
+
+                            @Html.ValidationMessageFor(model => model.SalesType, "", new { @class = "text-danger" })
+                        }
+
+                        else if (ViewBag.flag == "2nd")
+                        {
+                            string a = Model.SalesType.ToString();
+
+                            if (a == "SLS")
+                            {
+                                <p>Sales</p>
+                            }
+                            else if (a == "SLSR")
+                            {
+                                <p>Sales Return</p>
+                            }
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        @{
+            if (ViewBag.flag == "1st")
+            {
+
+                <div class="form-group" style="color:red; font-size:large">
+                    @Html.LabelFor(model => model.TotalAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TotalAmount, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TotalAmount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" style="color:blue">
+                    @Html.LabelFor(model => model.CashAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CashAmount, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CashAmount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" style="color:blue">
+                    @Html.LabelFor(model => model.ChequeAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ChequeAmount, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ChequeAmount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Remarks, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            }
+            else if (ViewBag.flag == "2nd")
+            {
+
+                <style>
+                    #nodisplay {
+                        display: none;
+                    }
+                </style>
+                <script>
+                    document.getElementById("nodisplay").disabled = true;
+                </script>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    Invoice Type
+                                </th>
+                                <th>
+                                    Total Amount
+                                </th>
+                                <th>
+                                    Cash Amount
+                                </th>
+                                <th>
+                                    Cheque Amount
+                                </th>
+                                <th>
+                                    Outstanding Amount
+                                </th>
+                                <th>
+                                    Remarks
+                                </th>
+
+                            </tr>
+                            <tr>
+                                <td style="color:darkblue">@Html.DisplayFor(model => model.InvoiceType) </td>
+                                <td>@Html.DisplayFor(model => model.TotalAmount) </td>
+                                <td>@Html.DisplayFor(model => model.CashAmount) </td>
+                                <td>@Html.DisplayFor(model => model.ChequeAmount) </td>
+                                <td style="color:red">@Html.DisplayFor(model => model.OutstandingAmount) </td>
+                                <td>@Html.DisplayFor(model => model.Remarks) </td>
+
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            }
+        }
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn" id="nodisplay" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "ViewDetails", "Sales", null, new { @class = "btn" })
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

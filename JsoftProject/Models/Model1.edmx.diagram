@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b03d336ad0bd4de5ba14fda116bfd607" Name="Diagram1">
+        <EntityTypeShape EntityType="JsoftWebModel.mstAccount" Width="1.5" PointX="5.25" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="JsoftWebModel.mstBsgrGroup" Width="1.5" PointX="3" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="JsoftWebModel.mstDailyRate" Width="1.5" PointX="3" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="JsoftWebModel.mstItem" Width="1.5" PointX="8" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JsoftWebModel.mstItemGroup" Width="1.5" PointX="8" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="JsoftWebModel.mstMesrUnit" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JsoftWebModel.mstMetalType" Width="1.5" PointX="5.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="JsoftWebModel.mstRateType" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JsoftWebModel.mstTax" Width="1.5" PointX="3" PointY="39.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JsoftWebModel.mstUser" Width="1.5" PointX="0.75" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="JsoftWebModel.sysdiagram" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JsoftWebModel.trnPurchase" Width="1.5" PointX="10.5" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="JsoftWebModel.trnPurchaseItem" Width="1.5" PointX="12.75" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="JsoftWebModel.trnSale" Width="1.5" PointX="7.5" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="JsoftWebModel.trnSalesItem" Width="1.5" PointX="10.25" PointY="26.875" IsExpanded="true" />
+        <AssociationConnector Association="JsoftWebModel.FK_mstAccount_mstBsgrGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_mstAccount_mstUser_AddBy" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_mstAccount_mstUser_EditBy" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_trnPurchase_mstAccount" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_trnSales_mstAccount" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_mstBsgrGroup_mstUser_AddBy" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_mstBsgrGroup_mstUser_EditBy" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_mstDailyRate_mstItemGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_mstDailyRate_mstUser_AddBy" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_mstDailyRate_mstUser_EditBy" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_mstItem_mstItemGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_mstItem_mstUser_AddBy" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_mstItem_mstUser_EditBy" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_trnPurchaseItem_mstItem" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_trnSalesItem_mstItem" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_mstItemGroup_mstMetalType" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_mstItemGroup_mstUser_AddBy" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_mstItemGroup_mstUser_EditBy" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_mstTax_mstTax_EditBy" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_mstTax_mstUser_AddBy" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_trnPurchaseItem_mstTax" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_trnSalesItem_mstTax" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_mstUser_mstUser_AddBy" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_mstUser_mstUser_EditBy" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_trnPurchase_mstUser_AddBy" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_trnPurchase_mstUser_EditBy" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_trnPurchaseItem_mstUser_AddBy" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_trnPurchaseItem_mstUser_EditBy" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_trnSales_mstUser_AddBy" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_trnSales_mstUser_EditBy" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_trnSalesItem_mstUser_AddBy" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_trnSalesItem_mstUser_EditBy" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_trnPurchaseItem_trnPurchase" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_trnPurchaseItem_trnPurchaseItem" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_trnSalesItem_trnSales" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_trnSalesItem_trnSalesItem" ManuallyRouted="false" />
+        <AssociationConnector Association="JsoftWebModel.FK_mstItemGroup_mstMesrUnit" />
+        <AssociationConnector Association="JsoftWebModel.FK_mstItemGroup_mstRateType_purchase" />
+        <AssociationConnector Association="JsoftWebModel.FK_mstItemGroup_mstRateType_sales" />
+        <EntityTypeShape EntityType="JsoftWebModel.mstCompany" Width="1.5" PointX="5.625" PointY="4" />
+        <EntityTypeShape EntityType="JsoftWebModel.mstState" Width="1.5" PointX="3.375" PointY="4.25" />
+        <AssociationConnector Association="JsoftWebModel.FK_mstCompany_mstState" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

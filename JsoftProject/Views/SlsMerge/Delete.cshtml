@@ -1,0 +1,233 @@
+﻿@model JsoftProject.Models.SalesMerge
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+
+<h3 style="color:red">Are you sure you want to delete this?</h3>
+
+<style>
+    .btn {
+        /* background-color: blue !important;*/
+        background-color: #337ab7;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+        .btn:hover {
+            color: purple;
+            font-size: large;
+            background-color: cornflowerblue;
+        }
+</style>
+
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.trnSale.VoucherNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnSale.VoucherNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnSale.VoucherDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnSale.VoucherDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnSale.mstAccount.AccountName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnSale.mstAccount.AccountName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnSale.InvoiceType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnSale.InvoiceType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnSale.SalesType)
+        </dt>
+
+        <dd>
+
+            @{
+
+                string a = Model.trnSale.SalesType.ToString();
+
+                if (a == "PUR")
+                {
+                    <p>Sales</p>
+                }
+                else if (a == "PURR")
+                {
+                    <p>Sales Return</p>
+                }
+
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnSalesItem.mstItem.ItemName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnSalesItem.mstItem.ItemName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.trnSalesItem.Pcs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnSalesItem.Pcs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnSalesItem.GrossWt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnSalesItem.GrossWt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnSalesItem.NetWt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnSalesItem.NetWt)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnSalesItem.Rate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnSalesItem.Rate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnSalesItem.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnSalesItem.Amount)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnSalesItem.mstTax.TaxName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnSalesItem.mstTax.TaxName)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnSalesItem.CGSTAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnSalesItem.CGSTAmount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.trnSalesItem.SGSTAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnSalesItem.SGSTAmount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.trnSalesItem.IGSTAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnSalesItem.IGSTAmount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.trnSalesItem.TotalAmt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnSalesItem.TotalAmt)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnSale.CashAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnSale.CashAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnSale.ChequeAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnSale.ChequeAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnSale.OutstandingAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnSale.OutstandingAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnSale.Remarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnSale.Remarks)
+        </dd>
+
+
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+
+            <input type="submit" value="Delete" class="btn btn-default" style="margin-left:10%" />
+
+            <br />
+            <br />
+            <br />
+
+
+            @Html.ActionLink("Back to List", "ViewDetails", "SlsMerge", null, new { @class = "btn" })
+
+        </div>
+    }
+</div>
+

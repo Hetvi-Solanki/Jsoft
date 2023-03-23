@@ -1,0 +1,71 @@
+﻿@model JsoftProject.Models.mstDailyRate
+
+@{
+    ViewBag.Title = "Delete Daily Rate";
+}
+
+<h2>Delete Daily Rate</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.mstItemGroup.GroupName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mstItemGroup.GroupName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseRate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SalesRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalesRate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EditDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EditDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mstItemGroup.MetalType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mstItemGroup.MetalType)
+        </dd>
+
+        
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "ViewDetailsDailyRate","DailyRate")
+        </div>
+    }
+</div>

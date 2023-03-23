@@ -1,0 +1,25 @@
+﻿@model List<JsoftProject.Models.PurchaseMerge>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Purchase Details</h2>
+
+<table>
+    <tr>
+        <th>Voucher No</th>
+        <th>Voucher Date</th>
+        <th>CGST Amount</th>
+    </tr>
+    
+        @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.trnPurchase.VoucherNo</td>
+                    <td>@item.trnPurchase.VoucherDate</td>
+                    <td>@item.trnPurchaseItem.CGSTAmount</td>
+                </tr>
+            }
+
+</table>

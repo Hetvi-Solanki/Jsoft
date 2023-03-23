@@ -1,0 +1,104 @@
+﻿@model IEnumerable<JsoftProject.Models.mstAccount>
+
+@{
+    ViewBag.Title = "Accounts";
+    WebGrid grid = new WebGrid(Model);
+}
+
+<h2>Accounts</h2>
+
+<p>
+    @Html.ActionLink("Add New Account", "Create", null, new { @class = "btn btn-success", style = "float: right; font-size:large;" })
+</p>
+<table class="table">
+    <tr style="color:red; font-size:large;">
+        <th>
+            @Html.DisplayNameFor(model => model.AccountName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShortName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mstBsgrGroup.GroupName)
+        </th>
+
+        
+
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CityName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StateName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pincode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GSTNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PANNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccountName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShortName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mstBsgrGroup.GroupName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CityName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StateName)
+        </td>
+        <td style = "text-align: right">
+            @Html.DisplayFor(modelItem => item.Pincode)
+        </td>
+        <td style = "text-align: right">
+            @Html.DisplayFor(modelItem => item.Mobile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td style = "text-align: right">
+            @Html.DisplayFor(modelItem => item.GSTNo)
+        </td>
+        <td style = "text-align: right">
+            @Html.DisplayFor(modelItem => item.PANNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.AccountID }, new { @class = "btn btn-success" }) 
+            @Html.ActionLink("Details", "Details", new { id = item.AccountID }, new { @class = "btn btn-primary" }) 
+            @Html.ActionLink("Delete", "Delete", new { id = item.AccountID }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

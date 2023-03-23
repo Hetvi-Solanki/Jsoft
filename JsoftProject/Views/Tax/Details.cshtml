@@ -1,0 +1,73 @@
+﻿@model JsoftProject.Models.mstTax
+
+@{
+    ViewBag.Title = "Tax Details";
+}
+
+<h2>Tax Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TaxName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaxName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SGSTPrc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SGSTPrc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CGSTPrc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CGSTPrc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IGSTPrc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IGSTPrc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EditDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EditDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TaxID }) |
+    @Html.ActionLink("Back to List", "ViewDetails","Tax")
+</p>

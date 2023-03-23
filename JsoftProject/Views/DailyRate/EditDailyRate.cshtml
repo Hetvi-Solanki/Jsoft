@@ -1,0 +1,118 @@
+﻿@model IList<JsoftProject.Models.mstDailyRate>
+
+@{
+    ViewBag.Title = "Daily Rate";
+}
+
+<h2>Update Daily Rate</h2>
+
+
+
+@using (Html.BeginForm("EditDailyRate", "DailyRate", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    RateDate
+                </th>
+
+                <th>
+                    GroupName
+                </th>
+                <th>
+                    ItemGroupID
+                </th>
+                <th>
+                    PurchaseRate
+                </th>
+                <th>
+                    SalesRate
+                </th>
+
+                
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @String.Format("{0:dd-MM-yyyy}", Model[i].RateDate)
+                        @*@Html.DisplayFor(s => Model[i].RateDate)*@
+                        @Html.HiddenFor(s => Model[i].RateDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(s => Model[i].mstItemGroup.GroupName)
+                    </td>
+                    <td style="text-align: right">
+                        @Html.DisplayFor(s => Model[i].ItemGroupID)
+                        @Html.HiddenFor(s => Model[i].ItemGroupID)
+                    </td>
+                    <td>
+                        @Html.EditorFor(s => Model[i].PurchaseRate, new { htmlAttributes = new { @style = "text-align: right; " } })
+                    </td>
+                    <td>
+                        @Html.EditorFor(s => Model[i].SalesRate, new { htmlAttributes = new { @style = "text-align: right; " } })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div style="text-align: center;">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+    //<input type="submit" value="Save" class="btn btn-primary" />
+}
+
+
+
+
+
+
+
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "ViewDetailsDailyRate", "DailyRate", new { @class = "btn btn-success" })
+</div>
+
+<script>
+    function checkDate() {
+        let selectedDate = new Date(document.getElementById("RateDate").value);
+        let today = new Date();
+        if (selectedDate > today) {
+            alert("Please select a date that is not in the future");
+            document.getElementById("RateDate").value = "";
+        }
+    }
+</script>
+
+
+<script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    today = yyyy + '-' + mm + '-' + dd;
+
+    document.getElementById("RateDate").setAttribute("max", today);
+</script>
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

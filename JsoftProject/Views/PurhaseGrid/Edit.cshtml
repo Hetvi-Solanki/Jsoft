@@ -1,0 +1,320 @@
+﻿@model JsoftProject.Models.PurchaseMerge
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+<style>
+    .btn {
+        /* background-color: blue !important;*/
+        background-color: #337ab7;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+        .btn:hover {
+            color: purple;
+            font-size: large;
+            background-color: cornflowerblue;
+        }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div style="width: 100%;">
+        <div style="width: 45%; height: 100px; float: left;">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.trnPurchase.VoucherNo, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                <div class="col-md-10">
+
+                    @Html.HiddenFor(model => model.trnPurchase.VoucherNo)
+                    <p>@Html.DisplayFor(model => model.trnPurchase.VoucherNo)</p>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.trnPurchase.VoucherDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+
+                    @Html.HiddenFor(model => model.trnPurchase.VoucherDate)
+                    <p>@string.Format("{0:dd-MM-yyyy}", Model.trnPurchase.VoucherDate)</p>
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <div style="margin-left: 50%; height: 100px;">
+
+
+            <div class="form-group right">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.trnPurchase.mstAccount.AccountName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @if (ViewBag.flag == "1st")
+                        {
+                            @Html.DropDownListFor(model => model.trnPurchase.AccountID, new SelectList(ViewBag.AccountList, "AccountID", "AccountName"),
+                   htmlAttributes: new { @class = "form-control" })
+
+
+                            @Html.ValidationMessageFor(model => model.trnPurchase.AccountID, "", new { @class = "text-danger" })
+                        }
+                        else if (ViewBag.flag == "2nd")
+                        {
+                            @Html.HiddenFor(model => model.trnPurchase.AccountID)
+                            <p>@ViewBag.acc</p>
+                        }
+                    </div>
+
+                </div>
+                <br />
+                <br />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.trnPurchase.PurchaseType, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @if (ViewBag.flag == "1st")
+                        {
+                            @Html.DropDownListFor(model => model.trnPurchase.PurchaseType, new List<SelectListItem>
+                            {
+                                new SelectListItem { Value = "PUR", Text = "Purchase" },
+                                new SelectListItem { Value = "PURR", Text = "Purchase Return" }
+                            }, "--Select--", new { @class = "form-control" })
+
+
+                            @Html.ValidationMessageFor(model => model.trnPurchase.PurchaseType, "", new { @class = "text-danger" })
+                        }
+
+                        else if (ViewBag.flag == "2nd")
+                        {
+                            @Html.HiddenFor(model => model.trnPurchase.PurchaseType)
+                            string a = Model.trnPurchase.PurchaseType.ToString();
+
+                            if (a == "PUR")
+                            {
+                                <p>Purchase</p>
+                            }
+                            else if (a == "PURR")
+                            {
+                                <p>Purchase Return</p>
+                            }
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        @{
+            if (ViewBag.flag == "1st")
+            {
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.trnPurchaseItem.mstItem.ItemName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+
+                        @Html.DropDownListFor(model => model.trnPurchaseItem.ItemID, new SelectList(ViewBag.ItemList, "ItemID", "ItemName"),
+                                       htmlAttributes: new { @class = "form-control" })
+
+
+                        @Html.ValidationMessageFor(model => model.trnPurchaseItem.mstItem.ItemName, "", new { @class = "text-danger" })
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.trnPurchaseItem.mstTax.TaxName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+
+                        @Html.DropDownListFor(model => model.trnPurchaseItem.TaxID, new SelectList(ViewBag.Taxes, "TaxID", "TaxName"),
+                                       htmlAttributes: new { @class = "form-control" })
+
+
+                        @Html.ValidationMessageFor(model => model.trnPurchaseItem.mstItem.ItemName, "", new { @class = "text-danger" })
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.trnPurchaseItem.Pcs, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+
+                        @Html.EditorFor(model => model.trnPurchaseItem.Pcs, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.trnPurchaseItem.Pcs, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.trnPurchaseItem.GrossWt, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+
+                        @Html.EditorFor(model => model.trnPurchaseItem.GrossWt, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.trnPurchaseItem.GrossWt, "", new { @class = "text-danger" })
+
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.trnPurchaseItem.NetWt, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+
+                        @Html.EditorFor(model => model.trnPurchaseItem.NetWt, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.trnPurchaseItem.NetWt, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.trnPurchaseItem.Mrp, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+
+
+                        @Html.EditorFor(model => model.trnPurchaseItem.Mrp, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.trnPurchaseItem.Mrp, "", new { @class = "text-danger" })
+
+
+                    </div>
+                </div>
+
+            }
+
+            if (ViewBag.flag == "2nd")
+            {
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    Pieces
+                                </th>
+                                <th>
+                                    Gross Weight
+                                </th>
+                                <th>
+                                    Net Weight
+                                </th>
+                                <th>
+                                    MRP
+                                </th>
+
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.HiddenFor(model => model.trnPurchaseItem.Pcs)
+                                    <p> @Model.trnPurchaseItem.Pcs </p>
+                                </td>
+
+                                <td>
+                                    @Html.HiddenFor(model => model.trnPurchaseItem.GrossWt)
+                                    <p> @Model.trnPurchaseItem.GrossWt </p>
+                                </td>
+
+                                <td>
+                                    @Html.HiddenFor(model => model.trnPurchaseItem.NetWt)
+                                    @Html.HiddenFor(model => model.trnPurchase.AddBy)
+                                    @Html.HiddenFor(model => model.trnPurchase.AddDate)
+                                    @Html.HiddenFor(model => model.trnPurchase.EditBy)
+                                    @Html.HiddenFor(model => model.trnPurchase.EditDate)
+                                    @Html.HiddenFor(model => model.trnPurchase.InvoiceType)
+                                    @Html.HiddenFor(model => model.trnPurchase.PurchaseID)
+                                    <p> @Model.trnPurchaseItem.NetWt </p>
+                                </td>
+
+                                <td>
+                                    @Html.HiddenFor(model => model.trnPurchaseItem.Mrp)
+                                    <p> @Model.trnPurchaseItem.Mrp </p>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+
+                <div class="form-group" style="color:red; font-size:large">
+                    @Html.LabelFor(model => model.trnPurchase.TotalAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.HiddenFor(model => model.trnPurchase.TotalAmount)
+                        <p>@Model.trnPurchase.TotalAmount</p>
+                    </div>
+                </div>
+
+                <div class="form-group" style="color:blue">
+                    @Html.LabelFor(model => model.trnPurchase.CashAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.trnPurchase.CashAmount, new { htmlAttributes = new { @class = "form-control", id = "CashAmount" } })
+                        @Html.ValidationMessageFor(model => model.trnPurchase.CashAmount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" style="color:blue">
+                    @Html.LabelFor(model => model.trnPurchase.ChequeAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.trnPurchase.ChequeAmount, new { htmlAttributes = new { @class = "form-control", id = "ChequeAmount" } })
+                        @Html.ValidationMessageFor(model => model.trnPurchase.ChequeAmount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                @Html.HiddenFor(model => model.trnPurchase.OutstandingAmount, new { id = "OutstandingAmountHidden" })
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.trnPurchase.Remarks, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.HiddenFor(model => model.trnPurchase.PurchaseID)
+                        @Html.EditorFor(model => model.trnPurchase.Remarks, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.trnPurchase.Remarks, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+
+            }
+        }
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="hidden" name="variable" value="@ViewBag.flag" />
+                @*  <input type="submit" value="Save" class="btn" id="nodisplay" />*@
+                <input type="submit" value="Edit" class="btn" onclick="window.location.href='/edit/{{Model.trnPurchase.purchaseID}}';" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "ViewDetails", "PurchaseGrid", null, new { @class = "btn" })
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

@@ -1,0 +1,168 @@
+﻿@model IEnumerable<JsoftProject.Models.NewSaleModel>
+
+@using JsoftProject.Models
+@using GridMvc.Html
+@using GridMvc.Sorting
+@using GridMvc.Filtering
+@using GridMvc
+
+
+@{
+    ViewBag.Title = "ViewDetails";
+}
+
+<h2>Sale Details</h2>
+
+<link href="~/Content/linkcolor.css" rel="stylesheet" />
+
+<head>
+    <style>
+        .btn {
+            /* background-color: blue !important;*/
+            background-color: #337ab7;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+            .btn:hover {
+                color: purple;
+                font-size: large;
+                background-color: cornflowerblue;
+            }
+
+        body {
+            background-color: lightyellow;
+            background-image: url("/auth_template/images/alyssa-hurley-IdU1Si3wJ-I-unsplash.jpg");
+        }
+
+        
+    </style>
+</head>
+
+<p>
+    @Html.ActionLink("Add New Sale", "MainView", null, new { @class = "btn" })
+</p>
+
+<form asp-action="ViewDetailsDailyRate">
+    <label for="startDate">Start Date:</label>
+    <input type="date" id="startDate" name="startDate" value="@DateTime.Today.ToString("yyyy-MM-dd")" onchange="checkDate();">
+
+    <label for="endDate">&nbsp;&nbsp;&nbsp;End Date:</label>
+    <input type="date" id="endDate" name="endDate" value="@DateTime.Today.ToString("yyyy-MM-dd")" onchange="checkDate();">
+
+    <input type="submit" value="Filter">
+    <br />
+    <br />
+</form>
+
+
+@if (ViewBag.Message != null)
+{
+    <p>@ViewBag.Message</p>
+}
+else
+{
+
+    <hr />
+
+
+    @(Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(c => c.trnSale.VoucherNo).Titled("Voucher No.");
+    columns.Add(c => c.trnSale.VoucherDate).Titled("Voucher Date").Filterable(true).Format("{0:dd-MM-yyyy}");
+    columns.Add(c => c.trnSale.mstAccount.AccountName).Titled("Account Name");
+    columns.Add(c => c.trnSale.InvoiceType).Titled("Invoice Type");
+
+    columns.Add(c => c.trnSaleItems).Titled("Sale Items").Encoded(false)
+        .RenderValueAs(purchaseItems =>
+        {
+            var grid = Html.Grid(purchaseItems.trnSaleItems).Columns(itemColumns =>
+            {
+                itemColumns.Add(c => c.mstItem.ItemName).Titled("Item Name");
+                itemColumns.Add(c => c.Pcs).Titled("Pieces");
+                itemColumns.Add(c => c.mstTax.TaxName).Titled("Tax");
+                itemColumns.Add(c => c.GrossWt).Titled("Gross Weight");
+                itemColumns.Add(c => c.NetWt).Titled("Net Weight");
+                itemColumns.Add(c => c.Rate).Titled("Rate");
+                itemColumns.Add(c => c.Amount).Titled("Amount");
+                itemColumns.Add(c => c.CGSTPrc).Titled("CGST Percentage");
+                itemColumns.Add(c => c.CGSTAmount).Titled("CGST Amount");
+                itemColumns.Add(c => c.SGSTPrc).Titled("SGST Percentage");
+                itemColumns.Add(c => c.SGSTAmount).Titled("SGST Amount");
+                itemColumns.Add(c => c.IGSTPrc).Titled("IGST Percentage");
+                itemColumns.Add(c => c.IGSTAmount).Titled("IGST Amount");
+                itemColumns.Add(c => c.TotalAmt).Titled("Total Amount");
+            }).WithPaging(10).Sortable();
+
+            return grid.ToHtmlString().Replace("<table", "<table class=\"table table-striped\"");
+        });
+
+    columns.Add(c => c.trnSale.TotalAmount).Titled("Total Amount");
+    columns.Add(c => c.trnSale.CashAmount).Titled("Cash Amount");
+    columns.Add(c => c.trnSale.ChequeAmount).Titled("Cheque Amount");
+    columns.Add(c => c.trnSale.OutstandingAmount).Titled("Outstanding Amount");
+    columns.Add(c => c.trnSale.Remarks).Titled("Remarks");
+
+    columns.Add()
+    .Encoded(false)
+    .Sanitized(false)
+    .SetWidth(30)
+    .RenderValueAs(o => Html.ActionLink("Invoice", "viewInvoice", new { id = o.trnSale.SalesID }, new { @class = "btn btn-success" }));
+
+
+    columns.Add()
+    .Encoded(false)
+    .Sanitized(false)
+    .SetWidth(30)
+    .RenderValueAs(o => Html.ActionLink("Delete", "Delete", new { id = o.trnSale.SalesID }, new { @class = "btn btn-info" }));
+
+
+}).WithPaging(10).Sortable())
+
+
+
+}
+
+
+@section styles{
+    @Styles.Render("~/Content/Gridmvc")
+}
+@section scripts{
+    @Scripts.Render("~/bundles/Gridmvc")
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+<script>
+    function checkDate() {
+        let selectedDate = new Date(document.getElementById("RateDate").value);
+        let today = new Date();
+        if (selectedDate > today) {
+            alert("Please select a date that is not in the future");
+            document.getElementById("RateDate").value = "";
+        }
+    }
+</script>
+
+
+<script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    today = yyyy + '-' + mm + '-' + dd;
+
+    document.getElementById("RateDate").setAttribute("max", today);
+</script>
+
+

@@ -1,0 +1,77 @@
+﻿@model JsoftProject.Models.mstItem
+
+@{
+    ViewBag.Title = "Item Details";
+}
+
+@Styles.Render("~/Content/linkcolor.css")
+<h2>Item Details</h2>
+
+<div>
+
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.mstItemGroup.mstMetalType.MetalTypeDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mstItemGroup.mstMetalType.MetalTypeDesc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.mstItemGroup.GroupName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mstItemGroup.GroupName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShortName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShortName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EditDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EditDate)
+        </dd>
+
+
+
+    </dl>
+</div>
+<p class="c1">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ItemID })
+</p>
+<p class="c1">
+    @Html.ActionLink("Back to List", "ViewDetails", "Item")
+</p>

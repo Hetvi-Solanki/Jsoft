@@ -1,0 +1,133 @@
+﻿@model IList<JsoftProject.Models.mstDailyRate>
+
+@{
+    ViewBag.Title = "Add Daily Rate";
+
+}
+
+
+<h2>Create Daily Rate</h2>
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model[0].RateDate, htmlAttributes: new { @class = "control-label col-md-1", @style = "font-size:large" })
+        <div class="col-md-10">
+            <div class="col-md-10">
+                <input type="date" id="RateDate" name="RateDate" value="@DateTime.Today.ToString("yyyy-MM-dd")" class="form-control" onchange="checkDate();">
+
+            </div>
+
+            @Html.ValidationMessageFor(model => model[0].RateDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <script>
+        var selectedDate = document.getElementById("RateDate").value;
+    </script>
+
+
+    <table>
+        @for (int i = 0; i < ViewBag.ItemGroupList.Count; i++)
+        {
+            
+            <tr>
+
+                <td>
+                    @ViewBag.ItemGroupList[i].GroupName
+                </td>
+                <td>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model[i].PurchaseRate, htmlAttributes: new { @class = "control-label col-md-7" ,@style ="margin-top:3px"})
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model[i].PurchaseRate, new { htmlAttributes = new { @class = "form-control", @style = "text-align: right; padding-left:100px; margin-bottom:10px;" } })
+                            @Html.ValidationMessageFor(model => model[i].PurchaseRate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model[i].SalesRate, htmlAttributes: new { @class = "control-label col-md-7", @style = "margin-top:3px" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model[i].SalesRate, new { htmlAttributes = new { @class = "form-control", @style = "text-align: right; padding-left:100px; margin-bottom:10px;" } })
+                            @Html.ValidationMessageFor(model => model[i].SalesRate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </td>
+
+
+                <td>
+                    @Html.HiddenFor(model => model[i].ItemGroupID, new { value = ViewBag.ItemGroupList[i].ItemGroupID })
+
+                </td>
+                <br />
+            </tr>
+
+
+
+        }
+    </table>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-primary" style="margin-top:10px;"/>
+        </div>
+    </div>
+
+}
+
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "ViewDetailsDailyRate", "DailyRate", new { @class = "btn btn-success" })
+</div>
+
+<script>
+    function checkDate() {
+        let selectedDate = new Date(document.getElementById("RateDate").value);
+        let today = new Date();
+        if (selectedDate > today) {
+            alert("Please select a date that is not in the future");
+            document.getElementById("RateDate").value = "";
+        }
+    }
+</script>
+
+
+<script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    today = yyyy + '-' + mm + '-' + dd;
+
+    document.getElementById("RateDate").setAttribute("max", today);
+</script>
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+

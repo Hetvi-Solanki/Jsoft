@@ -1,0 +1,70 @@
+﻿@model JsoftProject.Models.mstDailyRate
+
+@{
+    ViewBag.Title = "Daily Rate Detail";
+}
+
+<h2>Daily Rate Detail</h2>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.mstItemGroup.MetalType)
+         
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.mstItemGroup.MetalType)*@
+
+            @Html.DisplayFor(model => model.mstItemGroup.mstMetalType.MetalTypeDesc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.mstItemGroup.GroupName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mstItemGroup.GroupName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseRate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SalesRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalesRate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EditDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EditDate)
+        </dd>
+
+
+
+
+    </dl>
+</div>
+<p>
+
+    @Html.ActionLink("Back to List", "ViewDetailsDailyRate","DailyRate")
+</p>

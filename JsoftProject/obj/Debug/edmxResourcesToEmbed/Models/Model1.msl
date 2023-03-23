@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="JsoftWebModelStoreContainer" CdmEntityContainer="JsoftWeb">
+    <EntitySetMapping Name="mstAccounts">
+      <EntityTypeMapping TypeName="JsoftWebModel.mstAccount">
+        <MappingFragment StoreEntitySet="mstAccount">
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+          <ScalarProperty Name="BsgrID" ColumnName="BsgrID" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="StateName" ColumnName="StateName" />
+          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="GSTNo" ColumnName="GSTNo" />
+          <ScalarProperty Name="PANNo" ColumnName="PANNo" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="AddBy" ColumnName="AddBy" />
+          <ScalarProperty Name="EditBy" ColumnName="EditBy" />
+          <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mstBsgrGroups">
+      <EntityTypeMapping TypeName="JsoftWebModel.mstBsgrGroup">
+        <MappingFragment StoreEntitySet="mstBsgrGroup">
+          <ScalarProperty Name="BsgrID" ColumnName="BsgrID" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="AddBy" ColumnName="AddBy" />
+          <ScalarProperty Name="EditBy" ColumnName="EditBy" />
+          <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mstDailyRates">
+      <EntityTypeMapping TypeName="JsoftWebModel.mstDailyRate">
+        <MappingFragment StoreEntitySet="mstDailyRate">
+          <ScalarProperty Name="RateDate" ColumnName="RateDate" />
+          <ScalarProperty Name="ItemGroupID" ColumnName="ItemGroupID" />
+          <ScalarProperty Name="PurchaseRate" ColumnName="PurchaseRate" />
+          <ScalarProperty Name="SalesRate" ColumnName="SalesRate" />
+          <ScalarProperty Name="AddBy" ColumnName="AddBy" />
+          <ScalarProperty Name="EditBy" ColumnName="EditBy" />
+          <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mstItems">
+      <EntityTypeMapping TypeName="JsoftWebModel.mstItem">
+        <MappingFragment StoreEntitySet="mstItem">
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="ItemGroupID" ColumnName="ItemGroupID" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="AddBy" ColumnName="AddBy" />
+          <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+          <ScalarProperty Name="EditBy" ColumnName="EditBy" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mstItemGroups">
+      <EntityTypeMapping TypeName="JsoftWebModel.mstItemGroup">
+        <MappingFragment StoreEntitySet="mstItemGroup">
+          <ScalarProperty Name="ItemGroupID" ColumnName="ItemGroupID" />
+          <ScalarProperty Name="MetalType" ColumnName="MetalType" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="Touch" ColumnName="Touch" />
+          <ScalarProperty Name="SalesRateType" ColumnName="SalesRateType" />
+          <ScalarProperty Name="PurchaseRateType" ColumnName="PurchaseRateType" />
+          <ScalarProperty Name="MesrUnitCode" ColumnName="MesrUnitCode" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="AddBy" ColumnName="AddBy" />
+          <ScalarProperty Name="EditBy" ColumnName="EditBy" />
+          <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mstMesrUnits">
+      <EntityTypeMapping TypeName="JsoftWebModel.mstMesrUnit">
+        <MappingFragment StoreEntitySet="mstMesrUnit">
+          <ScalarProperty Name="MesrUnitCode" ColumnName="MesrUnitCode" />
+          <ScalarProperty Name="MesrUnitName" ColumnName="MesrUnitName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mstMetalTypes">
+      <EntityTypeMapping TypeName="JsoftWebModel.mstMetalType">
+        <MappingFragment StoreEntitySet="mstMetalType">
+          <ScalarProperty Name="MetalType" ColumnName="MetalType" />
+          <ScalarProperty Name="MetalTypeDesc" ColumnName="MetalTypeDesc" />
+          <ScalarProperty Name="DecimalPoint" ColumnName="DecimalPoint" />
+          <ScalarProperty Name="ROFinDecimal" ColumnName="ROFinDecimal" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mstRateTypes">
+      <EntityTypeMapping TypeName="JsoftWebModel.mstRateType">
+        <MappingFragment StoreEntitySet="mstRateType">
+          <ScalarProperty Name="RateType" ColumnName="RateType" />
+          <ScalarProperty Name="RateTypeDesc" ColumnName="RateTypeDesc" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mstTaxes">
+      <EntityTypeMapping TypeName="JsoftWebModel.mstTax">
+        <MappingFragment StoreEntitySet="mstTax">
+          <ScalarProperty Name="TaxID" ColumnName="TaxID" />
+          <ScalarProperty Name="TaxName" ColumnName="TaxName" />
+          <ScalarProperty Name="SGSTPrc" ColumnName="SGSTPrc" />
+          <ScalarProperty Name="CGSTPrc" ColumnName="CGSTPrc" />
+          <ScalarProperty Name="IGSTPrc" ColumnName="IGSTPrc" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="AddBy" ColumnName="AddBy" />
+          <ScalarProperty Name="EditBy" ColumnName="EditBy" />
+          <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mstUsers">
+      <EntityTypeMapping TypeName="JsoftWebModel.mstUser">
+        <MappingFragment StoreEntitySet="mstUser">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+          <ScalarProperty Name="AddBy" ColumnName="AddBy" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="EditBy" ColumnName="EditBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="JsoftWebModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="trnPurchases">
+      <EntityTypeMapping TypeName="JsoftWebModel.trnPurchase">
+        <MappingFragment StoreEntitySet="trnPurchase">
+          <ScalarProperty Name="PurchaseID" ColumnName="PurchaseID" />
+          <ScalarProperty Name="PurchaseType" ColumnName="PurchaseType" />
+          <ScalarProperty Name="VoucherNo" ColumnName="VoucherNo" />
+          <ScalarProperty Name="VoucherDate" ColumnName="VoucherDate" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="InvoiceType" ColumnName="InvoiceType" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="CashAmount" ColumnName="CashAmount" />
+          <ScalarProperty Name="ChequeAmount" ColumnName="ChequeAmount" />
+          <ScalarProperty Name="OutstandingAmount" ColumnName="OutstandingAmount" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="AddBy" ColumnName="AddBy" />
+          <ScalarProperty Name="EditBy" ColumnName="EditBy" />
+          <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="trnPurchaseItems">
+      <EntityTypeMapping TypeName="JsoftWebModel.trnPurchaseItem">
+        <MappingFragment StoreEntitySet="trnPurchaseItem">
+          <ScalarProperty Name="Mrp" ColumnName="Mrp" />
+          <ScalarProperty Name="PurchaseItemID" ColumnName="PurchaseItemID" />
+          <ScalarProperty Name="PurchaseID" ColumnName="PurchaseID" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="Pcs" ColumnName="Pcs" />
+          <ScalarProperty Name="GrossWt" ColumnName="GrossWt" />
+          <ScalarProperty Name="NetWt" ColumnName="NetWt" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="TaxID" ColumnName="TaxID" />
+          <ScalarProperty Name="SGSTPrc" ColumnName="SGSTPrc" />
+          <ScalarProperty Name="SGSTAmount" ColumnName="SGSTAmount" />
+          <ScalarProperty Name="CGSTPrc" ColumnName="CGSTPrc" />
+          <ScalarProperty Name="CGSTAmount" ColumnName="CGSTAmount" />
+          <ScalarProperty Name="IGSTPrc" ColumnName="IGSTPrc" />
+          <ScalarProperty Name="IGSTAmount" ColumnName="IGSTAmount" />
+          <ScalarProperty Name="TotalAmt" ColumnName="TotalAmt" />
+          <ScalarProperty Name="ReturnPurchaseItemID" ColumnName="ReturnPurchaseItemID" />
+          <ScalarProperty Name="AddBy" ColumnName="AddBy" />
+          <ScalarProperty Name="EditBy" ColumnName="EditBy" />
+          <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="trnSales">
+      <EntityTypeMapping TypeName="JsoftWebModel.trnSale">
+        <MappingFragment StoreEntitySet="trnSales">
+          <ScalarProperty Name="SalesID" ColumnName="SalesID" />
+          <ScalarProperty Name="SalesType" ColumnName="SalesType" />
+          <ScalarProperty Name="VoucherNo" ColumnName="VoucherNo" />
+          <ScalarProperty Name="VoucherDate" ColumnName="VoucherDate" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="InvoiceType" ColumnName="InvoiceType" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="CashAmount" ColumnName="CashAmount" />
+          <ScalarProperty Name="ChequeAmount" ColumnName="ChequeAmount" />
+          <ScalarProperty Name="OutstandingAmount" ColumnName="OutstandingAmount" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="AddBy" ColumnName="AddBy" />
+          <ScalarProperty Name="EditBy" ColumnName="EditBy" />
+          <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="trnSalesItems">
+      <EntityTypeMapping TypeName="JsoftWebModel.trnSalesItem">
+        <MappingFragment StoreEntitySet="trnSalesItem">
+          <ScalarProperty Name="SalesItemID" ColumnName="SalesItemID" />
+          <ScalarProperty Name="SalesID" ColumnName="SalesID" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="Pcs" ColumnName="Pcs" />
+          <ScalarProperty Name="GrossWt" ColumnName="GrossWt" />
+          <ScalarProperty Name="NetWt" ColumnName="NetWt" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="TaxID" ColumnName="TaxID" />
+          <ScalarProperty Name="SGSTPrc" ColumnName="SGSTPrc" />
+          <ScalarProperty Name="SGSTAmount" ColumnName="SGSTAmount" />
+          <ScalarProperty Name="CGSTPrc" ColumnName="CGSTPrc" />
+          <ScalarProperty Name="CGSTAmount" ColumnName="CGSTAmount" />
+          <ScalarProperty Name="IGSTPrc" ColumnName="IGSTPrc" />
+          <ScalarProperty Name="IGSTAmount" ColumnName="IGSTAmount" />
+          <ScalarProperty Name="TotalAmt" ColumnName="TotalAmt" />
+          <ScalarProperty Name="ReturnSalesItemID" ColumnName="ReturnSalesItemID" />
+          <ScalarProperty Name="AddBy" ColumnName="AddBy" />
+          <ScalarProperty Name="EditBy" ColumnName="EditBy" />
+          <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mstCompanies">
+      <EntityTypeMapping TypeName="JsoftWebModel.mstCompany">
+        <MappingFragment StoreEntitySet="mstCompany">
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mstStates">
+      <EntityTypeMapping TypeName="JsoftWebModel.mstState">
+        <MappingFragment StoreEntitySet="mstState">
+          <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+          <ScalarProperty Name="StateName" ColumnName="StateName" />
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

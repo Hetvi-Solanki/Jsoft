@@ -1,0 +1,166 @@
+﻿@model IEnumerable<JsoftProject.Models.mstItemGroup>
+
+@{
+    ViewBag.Title = "Item Groups";
+}
+
+<h2>Item Groups</h2>
+
+
+<br />
+
+<head>
+
+    @*<style>
+        .btn {
+            /* background-color: blue !important;*/
+            background-color: #337ab7;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+            .btn:hover {
+                color: purple;
+                font-size: large;
+                background-color: cornflowerblue;
+            }
+    </style>*@
+</head>
+
+
+<p>
+    @Html.ActionLink("Add Item Group", "Create", null, new { @class = "btn btn-success", style = "float: right;" })
+
+</p>
+
+<p>
+    @using (Html.BeginForm("ViewDetails", "MenuItemGroup", FormMethod.Get))
+    {
+        <b>Search By: </b>
+        @Html.RadioButton("SearchBy", "ItemGroupName", true)<text>&nbsp;Item Group Name&nbsp;&nbsp;</text>
+        @Html.RadioButton("SearchBy", "MetalType")<text>&nbsp;Metal&nbsp;&nbsp;</text>
+        <br />
+        <br />
+        @Html.TextBox("search")
+        <input type="submit" value="Search" />
+        <br />
+        <br />
+    }
+</p>
+
+<table class="table">
+    <tr style="color:red; font-size:large;">
+
+        <th>
+            @Html.DisplayNameFor(model => model.ShortName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mstMetalType.MetalTypeDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GroupName)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Touch)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MesrUnitCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PurchaseRateType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SalesRateType)
+        </th>
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+
+
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ShortName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mstMetalType.MetalTypeDesc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GroupName)
+            </td>
+
+            <td style="text-align: right">
+                @Html.DisplayFor(modelItem => item.Touch)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mstMesrUnit.MesrUnitName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PurchaseRateType)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.SalesRateType)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+
+
+
+
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ItemGroupID }, new { @class = "btn btn-success" })
+                @Html.ActionLink("Details", "Details", new { id = item.ItemGroupID }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.ItemGroupID }, new { @class = "btn btn-danger" })
+
+            </td>
+        </tr>
+    }
+
+</table>
+@{
+    Dictionary<string, string> rateTypeDictionary = new Dictionary<string, string>
+{
+            { "F", "Fine Wt * Rate" },
+            { "G", "Gross Wt * Rate" },
+            { "M", "MRP" },
+            { "N", "Net Weight * Rate" },
+            { "P", "Pcs * Rate" }
+        };
+}
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Rate</th>
+            <th>Description</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in rateTypeDictionary)
+        {
+            <tr>
+                <td>@i.Key</td>
+                <td>@i.Value</td>
+            </tr>
+        }
+    </tbody>
+</table>

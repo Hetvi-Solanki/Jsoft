@@ -1,0 +1,235 @@
+﻿@model JsoftProject.Models.PurchaseMerge
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+
+<h3 style="color:red">Are you sure you want to delete this?</h3>
+
+<style>
+    .btn {
+        /* background-color: blue !important;*/
+        background-color: #337ab7;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+        .btn:hover {
+            color: purple;
+            font-size: large;
+            background-color: cornflowerblue;
+        }
+</style>
+
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.trnPurchase.VoucherNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnPurchase.VoucherNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnPurchase.VoucherDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnPurchase.VoucherDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnPurchase.mstAccount.AccountName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnPurchase.mstAccount.AccountName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnPurchase.InvoiceType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnPurchase.InvoiceType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnPurchase.PurchaseType)
+        </dt>
+
+        <dd>
+
+
+            @{
+
+
+                string a = Model.trnPurchase.PurchaseType.ToString();
+
+                if (a == "PUR")
+                {
+                    <p>Purchase</p>
+                }
+                else if (a == "PURR")
+                {
+                    <p>Purchase Return</p>
+                }
+
+
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnPurchaseItem.mstItem.ItemName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnPurchaseItem.mstItem.ItemName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.trnPurchaseItem.Pcs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnPurchaseItem.Pcs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnPurchaseItem.GrossWt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnPurchaseItem.GrossWt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnPurchaseItem.NetWt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnPurchaseItem.NetWt)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnPurchaseItem.Rate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnPurchaseItem.Rate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnPurchaseItem.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnPurchaseItem.Amount)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnPurchaseItem.mstTax.TaxName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnPurchaseItem.mstTax.TaxName)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnPurchaseItem.CGSTAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnPurchaseItem.CGSTAmount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.trnPurchaseItem.SGSTAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnPurchaseItem.SGSTAmount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.trnPurchaseItem.IGSTAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnPurchaseItem.IGSTAmount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.trnPurchaseItem.TotalAmt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnPurchaseItem.TotalAmt)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnPurchase.CashAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnPurchase.CashAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnPurchase.ChequeAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnPurchase.ChequeAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnPurchase.OutstandingAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnPurchase.OutstandingAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trnPurchase.Remarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trnPurchase.Remarks)
+        </dd>
+
+
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+
+            <input type="submit" value="Delete" class="btn btn-default" style="margin-left:10%" />
+
+            <br />
+            <br />
+            <br />
+
+
+            @Html.ActionLink("Back to List", "ViewDetails", "PurchaseGrid", null, new { @class = "btn" })
+
+        </div>
+    }
+</div>

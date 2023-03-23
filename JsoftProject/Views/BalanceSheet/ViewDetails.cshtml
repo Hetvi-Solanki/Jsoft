@@ -1,0 +1,41 @@
+﻿@model IEnumerable<JsoftProject.Models.mstBsgrGroup>
+
+@{
+    ViewBag.Title = "Balance Sheet Groups";
+}
+
+<h2>Balance Sheet Groups</h2>
+
+<p>
+    @Html.ActionLink("Add Balance Sheet Group", "Create", null, new { @class = "btn btn-success", style = "float: right; font-size:large;" })
+</p>
+<table class="table">
+    <tr style="color:red; font-size:large;">
+        <th>
+            @Html.DisplayNameFor(model => model.GroupName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+       
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.GroupName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BsgrID }, new { @class = "btn btn-success" }) 
+            @Html.ActionLink("Details", "Details", new { id=item.BsgrID }, new { @class = "btn btn-primary" }) 
+            @Html.ActionLink("Delete", "Delete", new { id=item.BsgrID }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

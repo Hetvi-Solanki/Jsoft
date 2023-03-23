@@ -1,0 +1,999 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JsoftWebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="mstAccount">
+    <Key>
+      <PropertyRef Name="AccountID" />
+    </Key>
+    <Property Name="AccountID" Type="Int32" Nullable="false" />
+    <Property Name="AccountName" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BsgrID" Type="Int32" Nullable="false" />
+    <Property Name="ShortName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CityName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StateName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Pincode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Mobile" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GSTNo" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PANNo" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="AddBy" Type="Int32" />
+    <Property Name="EditBy" Type="Int32" />
+    <Property Name="AddDate" Type="DateTime" Precision="3" />
+    <Property Name="EditDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="mstBsgrGroup" Relationship="Self.FK_mstAccount_mstBsgrGroup" FromRole="mstAccount" ToRole="mstBsgrGroup" />
+    <NavigationProperty Name="mstUser" Relationship="Self.FK_mstAccount_mstUser_AddBy" FromRole="mstAccount" ToRole="mstUser" />
+    <NavigationProperty Name="mstUser1" Relationship="Self.FK_mstAccount_mstUser_EditBy" FromRole="mstAccount" ToRole="mstUser" />
+    <NavigationProperty Name="trnPurchases" Relationship="Self.FK_trnPurchase_mstAccount" FromRole="mstAccount" ToRole="trnPurchase" />
+    <NavigationProperty Name="trnSales" Relationship="Self.FK_trnSales_mstAccount" FromRole="mstAccount" ToRole="trnSales" />
+  </EntityType>
+  <EntityType Name="mstBsgrGroup">
+    <Key>
+      <PropertyRef Name="BsgrID" />
+    </Key>
+    <Property Name="BsgrID" Type="Int32" Nullable="false" />
+    <Property Name="GroupName" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="AddBy" Type="Int32" />
+    <Property Name="EditBy" Type="Int32" />
+    <Property Name="AddDate" Type="DateTime" Precision="3" />
+    <Property Name="EditDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="mstAccounts" Relationship="Self.FK_mstAccount_mstBsgrGroup" FromRole="mstBsgrGroup" ToRole="mstAccount" />
+    <NavigationProperty Name="mstUser" Relationship="Self.FK_mstBsgrGroup_mstUser_AddBy" FromRole="mstBsgrGroup" ToRole="mstUser" />
+    <NavigationProperty Name="mstUser1" Relationship="Self.FK_mstBsgrGroup_mstUser_EditBy" FromRole="mstBsgrGroup" ToRole="mstUser" />
+  </EntityType>
+  <EntityType Name="mstDailyRate">
+    <Key>
+      <PropertyRef Name="RateDate" />
+      <PropertyRef Name="ItemGroupID" />
+    </Key>
+    <Property Name="RateDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="ItemGroupID" Type="Int32" Nullable="false" />
+    <Property Name="PurchaseRate" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="SalesRate" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="AddBy" Type="Int32" />
+    <Property Name="EditBy" Type="Int32" />
+    <Property Name="AddDate" Type="DateTime" Precision="3" />
+    <Property Name="EditDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="mstItemGroup" Relationship="Self.FK_mstDailyRate_mstItemGroup" FromRole="mstDailyRate" ToRole="mstItemGroup" />
+    <NavigationProperty Name="mstUser" Relationship="Self.FK_mstDailyRate_mstUser_AddBy" FromRole="mstDailyRate" ToRole="mstUser" />
+    <NavigationProperty Name="mstUser1" Relationship="Self.FK_mstDailyRate_mstUser_EditBy" FromRole="mstDailyRate" ToRole="mstUser" />
+  </EntityType>
+  <EntityType Name="mstItem">
+    <Key>
+      <PropertyRef Name="ItemID" />
+    </Key>
+    <Property Name="ItemID" Type="Int32" Nullable="false" />
+    <Property Name="ItemName" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ShortName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ItemGroupID" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="AddBy" Type="Int32" />
+    <Property Name="AddDate" Type="DateTime" Precision="3" />
+    <Property Name="EditBy" Type="Int32" />
+    <Property Name="EditDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="mstItemGroup" Relationship="Self.FK_mstItem_mstItemGroup" FromRole="mstItem" ToRole="mstItemGroup" />
+    <NavigationProperty Name="mstUser" Relationship="Self.FK_mstItem_mstUser_AddBy" FromRole="mstItem" ToRole="mstUser" />
+    <NavigationProperty Name="mstUser1" Relationship="Self.FK_mstItem_mstUser_EditBy" FromRole="mstItem" ToRole="mstUser" />
+    <NavigationProperty Name="trnPurchaseItems" Relationship="Self.FK_trnPurchaseItem_mstItem" FromRole="mstItem" ToRole="trnPurchaseItem" />
+    <NavigationProperty Name="trnSalesItems" Relationship="Self.FK_trnSalesItem_mstItem" FromRole="mstItem" ToRole="trnSalesItem" />
+  </EntityType>
+  <EntityType Name="mstItemGroup">
+    <Key>
+      <PropertyRef Name="ItemGroupID" />
+    </Key>
+    <Property Name="ItemGroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MetalType" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GroupName" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ShortName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Touch" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="SalesRateType" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PurchaseRateType" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MesrUnitCode" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="AddBy" Type="Int32" />
+    <Property Name="EditBy" Type="Int32" />
+    <Property Name="AddDate" Type="DateTime" Precision="3" />
+    <Property Name="EditDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="mstDailyRates" Relationship="Self.FK_mstDailyRate_mstItemGroup" FromRole="mstItemGroup" ToRole="mstDailyRate" />
+    <NavigationProperty Name="mstItems" Relationship="Self.FK_mstItem_mstItemGroup" FromRole="mstItemGroup" ToRole="mstItem" />
+    <NavigationProperty Name="mstMetalType" Relationship="Self.FK_mstItemGroup_mstMetalType" FromRole="mstItemGroup" ToRole="mstMetalType" />
+    <NavigationProperty Name="mstUser" Relationship="Self.FK_mstItemGroup_mstUser_AddBy" FromRole="mstItemGroup" ToRole="mstUser" />
+    <NavigationProperty Name="mstUser1" Relationship="Self.FK_mstItemGroup_mstUser_EditBy" FromRole="mstItemGroup" ToRole="mstUser" />
+    <NavigationProperty Name="mstMesrUnit" Relationship="JsoftWebModel.FK_mstItemGroup_mstMesrUnit" FromRole="mstItemGroup" ToRole="mstMesrUnit" />
+    <NavigationProperty Name="mstRateType" Relationship="JsoftWebModel.FK_mstItemGroup_mstRateType_purchase" FromRole="mstItemGroup" ToRole="mstRateType" />
+    <NavigationProperty Name="mstRateType1" Relationship="JsoftWebModel.FK_mstItemGroup_mstRateType_sales" FromRole="mstItemGroup" ToRole="mstRateType" />
+  </EntityType>
+  <EntityType Name="mstMesrUnit">
+    <Key>
+      <PropertyRef Name="MesrUnitCode" />
+    </Key>
+    <Property Name="MesrUnitCode" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MesrUnitName" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="mstItemGroups" Relationship="JsoftWebModel.FK_mstItemGroup_mstMesrUnit" FromRole="mstMesrUnit" ToRole="mstItemGroup" />
+  </EntityType>
+  <EntityType Name="mstMetalType">
+    <Key>
+      <PropertyRef Name="MetalType" />
+    </Key>
+    <Property Name="MetalType" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MetalTypeDesc" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DecimalPoint" Type="Int32" Nullable="false" />
+    <Property Name="ROFinDecimal" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="mstItemGroups" Relationship="Self.FK_mstItemGroup_mstMetalType" FromRole="mstMetalType" ToRole="mstItemGroup" />
+  </EntityType>
+  <EntityType Name="mstRateType">
+    <Key>
+      <PropertyRef Name="RateType" />
+    </Key>
+    <Property Name="RateType" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RateTypeDesc" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="mstItemGroups" Relationship="JsoftWebModel.FK_mstItemGroup_mstRateType_purchase" FromRole="mstRateType" ToRole="mstItemGroup" />
+    <NavigationProperty Name="mstItemGroups1" Relationship="JsoftWebModel.FK_mstItemGroup_mstRateType_sales" FromRole="mstRateType" ToRole="mstItemGroup" />
+  </EntityType>
+  <EntityType Name="mstTax">
+    <Key>
+      <PropertyRef Name="TaxID" />
+    </Key>
+    <Property Name="TaxID" Type="Int32" Nullable="false" />
+    <Property Name="TaxName" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SGSTPrc" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="CGSTPrc" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="IGSTPrc" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="AddBy" Type="Int32" />
+    <Property Name="EditBy" Type="Int32" />
+    <Property Name="AddDate" Type="DateTime" Precision="3" />
+    <Property Name="EditDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="mstUser" Relationship="Self.FK_mstTax_mstTax_EditBy" FromRole="mstTax" ToRole="mstUser" />
+    <NavigationProperty Name="mstUser1" Relationship="Self.FK_mstTax_mstUser_AddBy" FromRole="mstTax" ToRole="mstUser" />
+    <NavigationProperty Name="trnPurchaseItems" Relationship="Self.FK_trnPurchaseItem_mstTax" FromRole="mstTax" ToRole="trnPurchaseItem" />
+    <NavigationProperty Name="trnSalesItems" Relationship="Self.FK_trnSalesItem_mstTax" FromRole="mstTax" ToRole="trnSalesItem" />
+  </EntityType>
+  <EntityType Name="mstUser">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LoginID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="AddDate" Type="DateTime" Precision="3" />
+    <Property Name="AddBy" Type="Int32" />
+    <Property Name="EditDate" Type="DateTime" Precision="3" />
+    <Property Name="EditBy" Type="Int32" />
+    <NavigationProperty Name="mstAccounts" Relationship="Self.FK_mstAccount_mstUser_AddBy" FromRole="mstUser" ToRole="mstAccount" />
+    <NavigationProperty Name="mstAccounts1" Relationship="Self.FK_mstAccount_mstUser_EditBy" FromRole="mstUser" ToRole="mstAccount" />
+    <NavigationProperty Name="mstBsgrGroups" Relationship="Self.FK_mstBsgrGroup_mstUser_AddBy" FromRole="mstUser" ToRole="mstBsgrGroup" />
+    <NavigationProperty Name="mstBsgrGroups1" Relationship="Self.FK_mstBsgrGroup_mstUser_EditBy" FromRole="mstUser" ToRole="mstBsgrGroup" />
+    <NavigationProperty Name="mstDailyRates" Relationship="Self.FK_mstDailyRate_mstUser_AddBy" FromRole="mstUser" ToRole="mstDailyRate" />
+    <NavigationProperty Name="mstDailyRates1" Relationship="Self.FK_mstDailyRate_mstUser_EditBy" FromRole="mstUser" ToRole="mstDailyRate" />
+    <NavigationProperty Name="mstItems" Relationship="Self.FK_mstItem_mstUser_AddBy" FromRole="mstUser" ToRole="mstItem" />
+    <NavigationProperty Name="mstItems1" Relationship="Self.FK_mstItem_mstUser_EditBy" FromRole="mstUser" ToRole="mstItem" />
+    <NavigationProperty Name="mstItemGroups" Relationship="Self.FK_mstItemGroup_mstUser_AddBy" FromRole="mstUser" ToRole="mstItemGroup" />
+    <NavigationProperty Name="mstItemGroups1" Relationship="Self.FK_mstItemGroup_mstUser_EditBy" FromRole="mstUser" ToRole="mstItemGroup" />
+    <NavigationProperty Name="mstTaxes" Relationship="Self.FK_mstTax_mstTax_EditBy" FromRole="mstUser" ToRole="mstTax" />
+    <NavigationProperty Name="mstTaxes1" Relationship="Self.FK_mstTax_mstUser_AddBy" FromRole="mstUser" ToRole="mstTax" />
+    <NavigationProperty Name="mstUser1" Relationship="Self.FK_mstUser_mstUser_AddBy" FromRole="mstUser" ToRole="mstUser1" />
+    <NavigationProperty Name="mstUser2" Relationship="Self.FK_mstUser_mstUser_AddBy" FromRole="mstUser1" ToRole="mstUser" />
+    <NavigationProperty Name="mstUser11" Relationship="Self.FK_mstUser_mstUser_EditBy" FromRole="mstUser" ToRole="mstUser1" />
+    <NavigationProperty Name="mstUser3" Relationship="Self.FK_mstUser_mstUser_EditBy" FromRole="mstUser1" ToRole="mstUser" />
+    <NavigationProperty Name="trnPurchases" Relationship="Self.FK_trnPurchase_mstUser_AddBy" FromRole="mstUser" ToRole="trnPurchase" />
+    <NavigationProperty Name="trnPurchases1" Relationship="Self.FK_trnPurchase_mstUser_EditBy" FromRole="mstUser" ToRole="trnPurchase" />
+    <NavigationProperty Name="trnPurchaseItems" Relationship="Self.FK_trnPurchaseItem_mstUser_AddBy" FromRole="mstUser" ToRole="trnPurchaseItem" />
+    <NavigationProperty Name="trnPurchaseItems1" Relationship="Self.FK_trnPurchaseItem_mstUser_EditBy" FromRole="mstUser" ToRole="trnPurchaseItem" />
+    <NavigationProperty Name="trnSales" Relationship="Self.FK_trnSales_mstUser_AddBy" FromRole="mstUser" ToRole="trnSales" />
+    <NavigationProperty Name="trnSales1" Relationship="Self.FK_trnSales_mstUser_EditBy" FromRole="mstUser" ToRole="trnSales" />
+    <NavigationProperty Name="trnSalesItems" Relationship="Self.FK_trnSalesItem_mstUser_AddBy" FromRole="mstUser" ToRole="trnSalesItem" />
+    <NavigationProperty Name="trnSalesItems1" Relationship="Self.FK_trnSalesItem_mstUser_EditBy" FromRole="mstUser" ToRole="trnSalesItem" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="trnPurchase">
+    <Key>
+      <PropertyRef Name="PurchaseID" />
+    </Key>
+    <Property Name="PurchaseID" Type="Int32" Nullable="false" />
+    <Property Name="PurchaseType" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="VoucherNo" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="VoucherDate" Type="DateTime" Precision="3" />
+    <Property Name="AccountID" Type="Int32" Nullable="false" />
+    <Property Name="InvoiceType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="CashAmount" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="ChequeAmount" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="OutstandingAmount" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="Remarks" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="AddBy" Type="Int32" />
+    <Property Name="EditBy" Type="Int32" />
+    <Property Name="AddDate" Type="DateTime" Precision="3" />
+    <Property Name="EditDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="mstAccount" Relationship="Self.FK_trnPurchase_mstAccount" FromRole="trnPurchase" ToRole="mstAccount" />
+    <NavigationProperty Name="mstUser" Relationship="Self.FK_trnPurchase_mstUser_AddBy" FromRole="trnPurchase" ToRole="mstUser" />
+    <NavigationProperty Name="mstUser1" Relationship="Self.FK_trnPurchase_mstUser_EditBy" FromRole="trnPurchase" ToRole="mstUser" />
+    <NavigationProperty Name="trnPurchaseItems" Relationship="Self.FK_trnPurchaseItem_trnPurchase" FromRole="trnPurchase" ToRole="trnPurchaseItem" />
+  </EntityType>
+  <EntityType Name="trnPurchaseItem">
+    <Key>
+      <PropertyRef Name="PurchaseItemID" />
+    </Key>
+    <Property Name="PurchaseItemID" Type="Int32" Nullable="false" />
+    <Property Name="PurchaseID" Type="Int32" Nullable="false" />
+    <Property Name="ItemID" Type="Int32" Nullable="false" />
+    <Property Name="Pcs" Type="Int32" />
+    <Property Name="GrossWt" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="NetWt" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="Rate" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="TaxID" Type="Int32" Nullable="false" />
+    <Property Name="SGSTPrc" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="SGSTAmount" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="CGSTPrc" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="CGSTAmount" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="IGSTPrc" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="IGSTAmount" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="TotalAmt" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="ReturnPurchaseItemID" Type="Int32" />
+    <Property Name="AddBy" Type="Int32" />
+    <Property Name="EditBy" Type="Int32" />
+    <Property Name="AddDate" Type="DateTime" Precision="3" />
+    <Property Name="EditDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="mstItem" Relationship="Self.FK_trnPurchaseItem_mstItem" FromRole="trnPurchaseItem" ToRole="mstItem" />
+    <NavigationProperty Name="mstTax" Relationship="Self.FK_trnPurchaseItem_mstTax" FromRole="trnPurchaseItem" ToRole="mstTax" />
+    <NavigationProperty Name="mstUser" Relationship="Self.FK_trnPurchaseItem_mstUser_AddBy" FromRole="trnPurchaseItem" ToRole="mstUser" />
+    <NavigationProperty Name="mstUser1" Relationship="Self.FK_trnPurchaseItem_mstUser_EditBy" FromRole="trnPurchaseItem" ToRole="mstUser" />
+    <NavigationProperty Name="trnPurchase" Relationship="Self.FK_trnPurchaseItem_trnPurchase" FromRole="trnPurchaseItem" ToRole="trnPurchase" />
+    <NavigationProperty Name="trnPurchaseItem1" Relationship="Self.FK_trnPurchaseItem_trnPurchaseItem" FromRole="trnPurchaseItem" ToRole="trnPurchaseItem1" />
+    <NavigationProperty Name="trnPurchaseItem2" Relationship="Self.FK_trnPurchaseItem_trnPurchaseItem" FromRole="trnPurchaseItem1" ToRole="trnPurchaseItem" />
+    <Property Name="Mrp" Type="Decimal" Precision="18" Scale="4" />
+  </EntityType>
+  <EntityType Name="trnSale">
+    <Key>
+      <PropertyRef Name="SalesID" />
+    </Key>
+    <Property Name="SalesID" Type="Int32" Nullable="false" />
+    <Property Name="SalesType" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="VoucherNo" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="VoucherDate" Type="DateTime" Precision="3" />
+    <Property Name="AccountID" Type="Int32" Nullable="false" />
+    <Property Name="InvoiceType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="CashAmount" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="ChequeAmount" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="OutstandingAmount" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="Remarks" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="AddBy" Type="Int32" />
+    <Property Name="EditBy" Type="Int32" />
+    <Property Name="AddDate" Type="DateTime" Precision="3" />
+    <Property Name="EditDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="mstAccount" Relationship="Self.FK_trnSales_mstAccount" FromRole="trnSales" ToRole="mstAccount" />
+    <NavigationProperty Name="mstUser" Relationship="Self.FK_trnSales_mstUser_AddBy" FromRole="trnSales" ToRole="mstUser" />
+    <NavigationProperty Name="mstUser1" Relationship="Self.FK_trnSales_mstUser_EditBy" FromRole="trnSales" ToRole="mstUser" />
+    <NavigationProperty Name="trnSalesItems" Relationship="Self.FK_trnSalesItem_trnSales" FromRole="trnSales" ToRole="trnSalesItem" />
+  </EntityType>
+  <EntityType Name="trnSalesItem">
+    <Key>
+      <PropertyRef Name="SalesItemID" />
+    </Key>
+    <Property Name="SalesItemID" Type="Int32" Nullable="false" />
+    <Property Name="SalesID" Type="Int32" Nullable="false" />
+    <Property Name="ItemID" Type="Int32" Nullable="false" />
+    <Property Name="Pcs" Type="Int32" Nullable="false" />
+    <Property Name="GrossWt" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="NetWt" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="Rate" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="TaxID" Type="Int32" Nullable="false" />
+    <Property Name="SGSTPrc" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="SGSTAmount" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="CGSTPrc" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="CGSTAmount" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="IGSTPrc" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="IGSTAmount" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="TotalAmt" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="ReturnSalesItemID" Type="Int32" />
+    <Property Name="AddBy" Type="Int32" />
+    <Property Name="EditBy" Type="Int32" />
+    <Property Name="AddDate" Type="DateTime" Precision="3" />
+    <Property Name="EditDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="mstItem" Relationship="Self.FK_trnSalesItem_mstItem" FromRole="trnSalesItem" ToRole="mstItem" />
+    <NavigationProperty Name="mstTax" Relationship="Self.FK_trnSalesItem_mstTax" FromRole="trnSalesItem" ToRole="mstTax" />
+    <NavigationProperty Name="mstUser" Relationship="Self.FK_trnSalesItem_mstUser_AddBy" FromRole="trnSalesItem" ToRole="mstUser" />
+    <NavigationProperty Name="mstUser1" Relationship="Self.FK_trnSalesItem_mstUser_EditBy" FromRole="trnSalesItem" ToRole="mstUser" />
+    <NavigationProperty Name="trnSale" Relationship="Self.FK_trnSalesItem_trnSales" FromRole="trnSalesItem" ToRole="trnSales" />
+    <NavigationProperty Name="trnSalesItem1" Relationship="Self.FK_trnSalesItem_trnSalesItem" FromRole="trnSalesItem" ToRole="trnSalesItem1" />
+    <NavigationProperty Name="trnSalesItem2" Relationship="Self.FK_trnSalesItem_trnSalesItem" FromRole="trnSalesItem1" ToRole="trnSalesItem" />
+  </EntityType>
+  <Association Name="FK_mstAccount_mstBsgrGroup">
+    <End Role="mstBsgrGroup" Type="Self.mstBsgrGroup" Multiplicity="1" />
+    <End Role="mstAccount" Type="Self.mstAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstBsgrGroup">
+        <PropertyRef Name="BsgrID" />
+      </Principal>
+      <Dependent Role="mstAccount">
+        <PropertyRef Name="BsgrID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_mstAccount_mstUser_AddBy">
+    <End Role="mstUser" Type="Self.mstUser" Multiplicity="0..1" />
+    <End Role="mstAccount" Type="Self.mstAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="mstAccount">
+        <PropertyRef Name="AddBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_mstAccount_mstUser_EditBy">
+    <End Role="mstUser" Type="Self.mstUser" Multiplicity="0..1" />
+    <End Role="mstAccount" Type="Self.mstAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="mstAccount">
+        <PropertyRef Name="EditBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trnPurchase_mstAccount">
+    <End Role="mstAccount" Type="Self.mstAccount" Multiplicity="1" />
+    <End Role="trnPurchase" Type="Self.trnPurchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstAccount">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="trnPurchase">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trnSales_mstAccount">
+    <End Role="mstAccount" Type="Self.mstAccount" Multiplicity="1" />
+    <End Role="trnSales" Type="Self.trnSale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstAccount">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="trnSales">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_mstBsgrGroup_mstUser_AddBy">
+    <End Role="mstUser" Type="Self.mstUser" Multiplicity="0..1" />
+    <End Role="mstBsgrGroup" Type="Self.mstBsgrGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="mstBsgrGroup">
+        <PropertyRef Name="AddBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_mstBsgrGroup_mstUser_EditBy">
+    <End Role="mstUser" Type="Self.mstUser" Multiplicity="0..1" />
+    <End Role="mstBsgrGroup" Type="Self.mstBsgrGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="mstBsgrGroup">
+        <PropertyRef Name="EditBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_mstDailyRate_mstItemGroup">
+    <End Role="mstItemGroup" Type="Self.mstItemGroup" Multiplicity="1" />
+    <End Role="mstDailyRate" Type="Self.mstDailyRate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstItemGroup">
+        <PropertyRef Name="ItemGroupID" />
+      </Principal>
+      <Dependent Role="mstDailyRate">
+        <PropertyRef Name="ItemGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_mstDailyRate_mstUser_AddBy">
+    <End Role="mstUser" Type="Self.mstUser" Multiplicity="0..1" />
+    <End Role="mstDailyRate" Type="Self.mstDailyRate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="mstDailyRate">
+        <PropertyRef Name="AddBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_mstDailyRate_mstUser_EditBy">
+    <End Role="mstUser" Type="Self.mstUser" Multiplicity="0..1" />
+    <End Role="mstDailyRate" Type="Self.mstDailyRate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="mstDailyRate">
+        <PropertyRef Name="EditBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_mstItem_mstItemGroup">
+    <End Role="mstItemGroup" Type="Self.mstItemGroup" Multiplicity="1" />
+    <End Role="mstItem" Type="Self.mstItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstItemGroup">
+        <PropertyRef Name="ItemGroupID" />
+      </Principal>
+      <Dependent Role="mstItem">
+        <PropertyRef Name="ItemGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_mstItem_mstUser_AddBy">
+    <End Role="mstUser" Type="Self.mstUser" Multiplicity="0..1" />
+    <End Role="mstItem" Type="Self.mstItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="mstItem">
+        <PropertyRef Name="AddBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_mstItem_mstUser_EditBy">
+    <End Role="mstUser" Type="Self.mstUser" Multiplicity="0..1" />
+    <End Role="mstItem" Type="Self.mstItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="mstItem">
+        <PropertyRef Name="EditBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trnPurchaseItem_mstItem">
+    <End Role="mstItem" Type="Self.mstItem" Multiplicity="1" />
+    <End Role="trnPurchaseItem" Type="Self.trnPurchaseItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstItem">
+        <PropertyRef Name="ItemID" />
+      </Principal>
+      <Dependent Role="trnPurchaseItem">
+        <PropertyRef Name="ItemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trnSalesItem_mstItem">
+    <End Role="mstItem" Type="Self.mstItem" Multiplicity="1" />
+    <End Role="trnSalesItem" Type="Self.trnSalesItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstItem">
+        <PropertyRef Name="ItemID" />
+      </Principal>
+      <Dependent Role="trnSalesItem">
+        <PropertyRef Name="ItemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_mstItemGroup_mstMetalType">
+    <End Role="mstMetalType" Type="Self.mstMetalType" Multiplicity="1" />
+    <End Role="mstItemGroup" Type="Self.mstItemGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstMetalType">
+        <PropertyRef Name="MetalType" />
+      </Principal>
+      <Dependent Role="mstItemGroup">
+        <PropertyRef Name="MetalType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_mstItemGroup_mstUser_AddBy">
+    <End Role="mstUser" Type="Self.mstUser" Multiplicity="0..1" />
+    <End Role="mstItemGroup" Type="Self.mstItemGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="mstItemGroup">
+        <PropertyRef Name="AddBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_mstItemGroup_mstUser_EditBy">
+    <End Role="mstUser" Type="Self.mstUser" Multiplicity="0..1" />
+    <End Role="mstItemGroup" Type="Self.mstItemGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="mstItemGroup">
+        <PropertyRef Name="EditBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_mstTax_mstTax_EditBy">
+    <End Role="mstUser" Type="Self.mstUser" Multiplicity="0..1" />
+    <End Role="mstTax" Type="Self.mstTax" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="mstTax">
+        <PropertyRef Name="EditBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_mstTax_mstUser_AddBy">
+    <End Role="mstUser" Type="Self.mstUser" Multiplicity="0..1" />
+    <End Role="mstTax" Type="Self.mstTax" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="mstTax">
+        <PropertyRef Name="AddBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trnPurchaseItem_mstTax">
+    <End Role="mstTax" Type="Self.mstTax" Multiplicity="1" />
+    <End Role="trnPurchaseItem" Type="Self.trnPurchaseItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstTax">
+        <PropertyRef Name="TaxID" />
+      </Principal>
+      <Dependent Role="trnPurchaseItem">
+        <PropertyRef Name="TaxID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trnSalesItem_mstTax">
+    <End Role="mstTax" Type="Self.mstTax" Multiplicity="1" />
+    <End Role="trnSalesItem" Type="Self.trnSalesItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstTax">
+        <PropertyRef Name="TaxID" />
+      </Principal>
+      <Dependent Role="trnSalesItem">
+        <PropertyRef Name="TaxID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_mstUser_mstUser_AddBy">
+    <End Role="mstUser" Type="Self.mstUser" Multiplicity="0..1" />
+    <End Role="mstUser1" Type="Self.mstUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="mstUser1">
+        <PropertyRef Name="AddBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_mstUser_mstUser_EditBy">
+    <End Role="mstUser" Type="Self.mstUser" Multiplicity="0..1" />
+    <End Role="mstUser1" Type="Self.mstUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="mstUser1">
+        <PropertyRef Name="EditBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trnPurchase_mstUser_AddBy">
+    <End Role="mstUser" Type="Self.mstUser" Multiplicity="0..1" />
+    <End Role="trnPurchase" Type="Self.trnPurchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="trnPurchase">
+        <PropertyRef Name="AddBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trnPurchase_mstUser_EditBy">
+    <End Role="mstUser" Type="Self.mstUser" Multiplicity="0..1" />
+    <End Role="trnPurchase" Type="Self.trnPurchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="trnPurchase">
+        <PropertyRef Name="EditBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trnPurchaseItem_mstUser_AddBy">
+    <End Role="mstUser" Type="Self.mstUser" Multiplicity="0..1" />
+    <End Role="trnPurchaseItem" Type="Self.trnPurchaseItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="trnPurchaseItem">
+        <PropertyRef Name="AddBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trnPurchaseItem_mstUser_EditBy">
+    <End Role="mstUser" Type="Self.mstUser" Multiplicity="0..1" />
+    <End Role="trnPurchaseItem" Type="Self.trnPurchaseItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="trnPurchaseItem">
+        <PropertyRef Name="EditBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trnSales_mstUser_AddBy">
+    <End Role="mstUser" Type="Self.mstUser" Multiplicity="0..1" />
+    <End Role="trnSales" Type="Self.trnSale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="trnSales">
+        <PropertyRef Name="AddBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trnSales_mstUser_EditBy">
+    <End Role="mstUser" Type="Self.mstUser" Multiplicity="0..1" />
+    <End Role="trnSales" Type="Self.trnSale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="trnSales">
+        <PropertyRef Name="EditBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trnSalesItem_mstUser_AddBy">
+    <End Role="mstUser" Type="Self.mstUser" Multiplicity="0..1" />
+    <End Role="trnSalesItem" Type="Self.trnSalesItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="trnSalesItem">
+        <PropertyRef Name="AddBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trnSalesItem_mstUser_EditBy">
+    <End Role="mstUser" Type="Self.mstUser" Multiplicity="0..1" />
+    <End Role="trnSalesItem" Type="Self.trnSalesItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="trnSalesItem">
+        <PropertyRef Name="EditBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trnPurchaseItem_trnPurchase">
+    <End Role="trnPurchase" Type="Self.trnPurchase" Multiplicity="1" />
+    <End Role="trnPurchaseItem" Type="Self.trnPurchaseItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="trnPurchase">
+        <PropertyRef Name="PurchaseID" />
+      </Principal>
+      <Dependent Role="trnPurchaseItem">
+        <PropertyRef Name="PurchaseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trnPurchaseItem_trnPurchaseItem">
+    <End Role="trnPurchaseItem" Type="Self.trnPurchaseItem" Multiplicity="0..1" />
+    <End Role="trnPurchaseItem1" Type="Self.trnPurchaseItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="trnPurchaseItem">
+        <PropertyRef Name="PurchaseItemID" />
+      </Principal>
+      <Dependent Role="trnPurchaseItem1">
+        <PropertyRef Name="ReturnPurchaseItemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trnSalesItem_trnSales">
+    <End Role="trnSales" Type="Self.trnSale" Multiplicity="1" />
+    <End Role="trnSalesItem" Type="Self.trnSalesItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="trnSales">
+        <PropertyRef Name="SalesID" />
+      </Principal>
+      <Dependent Role="trnSalesItem">
+        <PropertyRef Name="SalesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trnSalesItem_trnSalesItem">
+    <End Role="trnSalesItem" Type="Self.trnSalesItem" Multiplicity="0..1" />
+    <End Role="trnSalesItem1" Type="Self.trnSalesItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="trnSalesItem">
+        <PropertyRef Name="SalesItemID" />
+      </Principal>
+      <Dependent Role="trnSalesItem1">
+        <PropertyRef Name="ReturnSalesItemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="JsoftWeb" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="mstAccounts" EntityType="Self.mstAccount" />
+    <EntitySet Name="mstBsgrGroups" EntityType="Self.mstBsgrGroup" />
+    <EntitySet Name="mstDailyRates" EntityType="Self.mstDailyRate" />
+    <EntitySet Name="mstItems" EntityType="Self.mstItem" />
+    <EntitySet Name="mstItemGroups" EntityType="Self.mstItemGroup" />
+    <EntitySet Name="mstMesrUnits" EntityType="Self.mstMesrUnit" />
+    <EntitySet Name="mstMetalTypes" EntityType="Self.mstMetalType" />
+    <EntitySet Name="mstRateTypes" EntityType="Self.mstRateType" />
+    <EntitySet Name="mstTaxes" EntityType="Self.mstTax" />
+    <EntitySet Name="mstUsers" EntityType="Self.mstUser" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="trnPurchases" EntityType="Self.trnPurchase" />
+    <EntitySet Name="trnPurchaseItems" EntityType="Self.trnPurchaseItem" />
+    <EntitySet Name="trnSales" EntityType="Self.trnSale" />
+    <EntitySet Name="trnSalesItems" EntityType="Self.trnSalesItem" />
+    <AssociationSet Name="FK_mstAccount_mstBsgrGroup" Association="Self.FK_mstAccount_mstBsgrGroup">
+      <End Role="mstBsgrGroup" EntitySet="mstBsgrGroups" />
+      <End Role="mstAccount" EntitySet="mstAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_mstAccount_mstUser_AddBy" Association="Self.FK_mstAccount_mstUser_AddBy">
+      <End Role="mstUser" EntitySet="mstUsers" />
+      <End Role="mstAccount" EntitySet="mstAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_mstAccount_mstUser_EditBy" Association="Self.FK_mstAccount_mstUser_EditBy">
+      <End Role="mstUser" EntitySet="mstUsers" />
+      <End Role="mstAccount" EntitySet="mstAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trnPurchase_mstAccount" Association="Self.FK_trnPurchase_mstAccount">
+      <End Role="mstAccount" EntitySet="mstAccounts" />
+      <End Role="trnPurchase" EntitySet="trnPurchases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trnSales_mstAccount" Association="Self.FK_trnSales_mstAccount">
+      <End Role="mstAccount" EntitySet="mstAccounts" />
+      <End Role="trnSales" EntitySet="trnSales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_mstBsgrGroup_mstUser_AddBy" Association="Self.FK_mstBsgrGroup_mstUser_AddBy">
+      <End Role="mstUser" EntitySet="mstUsers" />
+      <End Role="mstBsgrGroup" EntitySet="mstBsgrGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_mstBsgrGroup_mstUser_EditBy" Association="Self.FK_mstBsgrGroup_mstUser_EditBy">
+      <End Role="mstUser" EntitySet="mstUsers" />
+      <End Role="mstBsgrGroup" EntitySet="mstBsgrGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_mstDailyRate_mstItemGroup" Association="Self.FK_mstDailyRate_mstItemGroup">
+      <End Role="mstItemGroup" EntitySet="mstItemGroups" />
+      <End Role="mstDailyRate" EntitySet="mstDailyRates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_mstDailyRate_mstUser_AddBy" Association="Self.FK_mstDailyRate_mstUser_AddBy">
+      <End Role="mstUser" EntitySet="mstUsers" />
+      <End Role="mstDailyRate" EntitySet="mstDailyRates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_mstDailyRate_mstUser_EditBy" Association="Self.FK_mstDailyRate_mstUser_EditBy">
+      <End Role="mstUser" EntitySet="mstUsers" />
+      <End Role="mstDailyRate" EntitySet="mstDailyRates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_mstItem_mstItemGroup" Association="Self.FK_mstItem_mstItemGroup">
+      <End Role="mstItemGroup" EntitySet="mstItemGroups" />
+      <End Role="mstItem" EntitySet="mstItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_mstItem_mstUser_AddBy" Association="Self.FK_mstItem_mstUser_AddBy">
+      <End Role="mstUser" EntitySet="mstUsers" />
+      <End Role="mstItem" EntitySet="mstItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_mstItem_mstUser_EditBy" Association="Self.FK_mstItem_mstUser_EditBy">
+      <End Role="mstUser" EntitySet="mstUsers" />
+      <End Role="mstItem" EntitySet="mstItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trnPurchaseItem_mstItem" Association="Self.FK_trnPurchaseItem_mstItem">
+      <End Role="mstItem" EntitySet="mstItems" />
+      <End Role="trnPurchaseItem" EntitySet="trnPurchaseItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trnSalesItem_mstItem" Association="Self.FK_trnSalesItem_mstItem">
+      <End Role="mstItem" EntitySet="mstItems" />
+      <End Role="trnSalesItem" EntitySet="trnSalesItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_mstItemGroup_mstMetalType" Association="Self.FK_mstItemGroup_mstMetalType">
+      <End Role="mstMetalType" EntitySet="mstMetalTypes" />
+      <End Role="mstItemGroup" EntitySet="mstItemGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_mstItemGroup_mstUser_AddBy" Association="Self.FK_mstItemGroup_mstUser_AddBy">
+      <End Role="mstUser" EntitySet="mstUsers" />
+      <End Role="mstItemGroup" EntitySet="mstItemGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_mstItemGroup_mstUser_EditBy" Association="Self.FK_mstItemGroup_mstUser_EditBy">
+      <End Role="mstUser" EntitySet="mstUsers" />
+      <End Role="mstItemGroup" EntitySet="mstItemGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_mstTax_mstTax_EditBy" Association="Self.FK_mstTax_mstTax_EditBy">
+      <End Role="mstUser" EntitySet="mstUsers" />
+      <End Role="mstTax" EntitySet="mstTaxes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_mstTax_mstUser_AddBy" Association="Self.FK_mstTax_mstUser_AddBy">
+      <End Role="mstUser" EntitySet="mstUsers" />
+      <End Role="mstTax" EntitySet="mstTaxes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trnPurchaseItem_mstTax" Association="Self.FK_trnPurchaseItem_mstTax">
+      <End Role="mstTax" EntitySet="mstTaxes" />
+      <End Role="trnPurchaseItem" EntitySet="trnPurchaseItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trnSalesItem_mstTax" Association="Self.FK_trnSalesItem_mstTax">
+      <End Role="mstTax" EntitySet="mstTaxes" />
+      <End Role="trnSalesItem" EntitySet="trnSalesItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_mstUser_mstUser_AddBy" Association="Self.FK_mstUser_mstUser_AddBy">
+      <End Role="mstUser" EntitySet="mstUsers" />
+      <End Role="mstUser1" EntitySet="mstUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_mstUser_mstUser_EditBy" Association="Self.FK_mstUser_mstUser_EditBy">
+      <End Role="mstUser" EntitySet="mstUsers" />
+      <End Role="mstUser1" EntitySet="mstUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trnPurchase_mstUser_AddBy" Association="Self.FK_trnPurchase_mstUser_AddBy">
+      <End Role="mstUser" EntitySet="mstUsers" />
+      <End Role="trnPurchase" EntitySet="trnPurchases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trnPurchase_mstUser_EditBy" Association="Self.FK_trnPurchase_mstUser_EditBy">
+      <End Role="mstUser" EntitySet="mstUsers" />
+      <End Role="trnPurchase" EntitySet="trnPurchases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trnPurchaseItem_mstUser_AddBy" Association="Self.FK_trnPurchaseItem_mstUser_AddBy">
+      <End Role="mstUser" EntitySet="mstUsers" />
+      <End Role="trnPurchaseItem" EntitySet="trnPurchaseItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trnPurchaseItem_mstUser_EditBy" Association="Self.FK_trnPurchaseItem_mstUser_EditBy">
+      <End Role="mstUser" EntitySet="mstUsers" />
+      <End Role="trnPurchaseItem" EntitySet="trnPurchaseItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trnSales_mstUser_AddBy" Association="Self.FK_trnSales_mstUser_AddBy">
+      <End Role="mstUser" EntitySet="mstUsers" />
+      <End Role="trnSales" EntitySet="trnSales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trnSales_mstUser_EditBy" Association="Self.FK_trnSales_mstUser_EditBy">
+      <End Role="mstUser" EntitySet="mstUsers" />
+      <End Role="trnSales" EntitySet="trnSales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trnSalesItem_mstUser_AddBy" Association="Self.FK_trnSalesItem_mstUser_AddBy">
+      <End Role="mstUser" EntitySet="mstUsers" />
+      <End Role="trnSalesItem" EntitySet="trnSalesItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trnSalesItem_mstUser_EditBy" Association="Self.FK_trnSalesItem_mstUser_EditBy">
+      <End Role="mstUser" EntitySet="mstUsers" />
+      <End Role="trnSalesItem" EntitySet="trnSalesItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trnPurchaseItem_trnPurchase" Association="Self.FK_trnPurchaseItem_trnPurchase">
+      <End Role="trnPurchase" EntitySet="trnPurchases" />
+      <End Role="trnPurchaseItem" EntitySet="trnPurchaseItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trnPurchaseItem_trnPurchaseItem" Association="Self.FK_trnPurchaseItem_trnPurchaseItem">
+      <End Role="trnPurchaseItem" EntitySet="trnPurchaseItems" />
+      <End Role="trnPurchaseItem1" EntitySet="trnPurchaseItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trnSalesItem_trnSales" Association="Self.FK_trnSalesItem_trnSales">
+      <End Role="trnSales" EntitySet="trnSales" />
+      <End Role="trnSalesItem" EntitySet="trnSalesItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trnSalesItem_trnSalesItem" Association="Self.FK_trnSalesItem_trnSalesItem">
+      <End Role="trnSalesItem" EntitySet="trnSalesItems" />
+      <End Role="trnSalesItem1" EntitySet="trnSalesItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_mstItemGroup_mstMesrUnit" Association="JsoftWebModel.FK_mstItemGroup_mstMesrUnit">
+      <End Role="mstMesrUnit" EntitySet="mstMesrUnits" />
+      <End Role="mstItemGroup" EntitySet="mstItemGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_mstItemGroup_mstRateType_purchase" Association="JsoftWebModel.FK_mstItemGroup_mstRateType_purchase">
+      <End Role="mstRateType" EntitySet="mstRateTypes" />
+      <End Role="mstItemGroup" EntitySet="mstItemGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_mstItemGroup_mstRateType_sales" Association="JsoftWebModel.FK_mstItemGroup_mstRateType_sales">
+      <End Role="mstRateType" EntitySet="mstRateTypes" />
+      <End Role="mstItemGroup" EntitySet="mstItemGroups" />
+    </AssociationSet>
+    <EntitySet Name="mstCompanies" EntityType="JsoftWebModel.mstCompany" />
+    <EntitySet Name="mstStates" EntityType="JsoftWebModel.mstState" />
+    <AssociationSet Name="FK_mstCompany_mstState" Association="JsoftWebModel.FK_mstCompany_mstState">
+      <End Role="mstState" EntitySet="mstStates" />
+      <End Role="mstCompany" EntitySet="mstCompanies" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_mstItemGroup_mstMesrUnit">
+    <End Type="JsoftWebModel.mstMesrUnit" Role="mstMesrUnit" Multiplicity="1" />
+    <End Type="JsoftWebModel.mstItemGroup" Role="mstItemGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstMesrUnit">
+        <PropertyRef Name="MesrUnitCode" />
+      </Principal>
+      <Dependent Role="mstItemGroup">
+        <PropertyRef Name="MesrUnitCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_mstItemGroup_mstRateType_purchase">
+    <End Type="JsoftWebModel.mstRateType" Role="mstRateType" Multiplicity="1" />
+    <End Type="JsoftWebModel.mstItemGroup" Role="mstItemGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstRateType">
+        <PropertyRef Name="RateType" />
+      </Principal>
+      <Dependent Role="mstItemGroup">
+        <PropertyRef Name="PurchaseRateType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_mstItemGroup_mstRateType_sales">
+    <End Type="JsoftWebModel.mstRateType" Role="mstRateType" Multiplicity="1" />
+    <End Type="JsoftWebModel.mstItemGroup" Role="mstItemGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstRateType">
+        <PropertyRef Name="RateType" />
+      </Principal>
+      <Dependent Role="mstItemGroup">
+        <PropertyRef Name="SalesRateType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="mstCompany">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNo" Type="Int32" Nullable="false" />
+    <Property Name="EmailId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="StateID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="mstState" Relationship="JsoftWebModel.FK_mstCompany_mstState" FromRole="mstCompany" ToRole="mstState" />
+  </EntityType>
+  <EntityType Name="mstState">
+    <Key>
+      <PropertyRef Name="StateID" />
+    </Key>
+    <Property Name="StateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StateName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="StateCode" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="mstCompanies" Relationship="JsoftWebModel.FK_mstCompany_mstState" FromRole="mstState" ToRole="mstCompany" />
+  </EntityType>
+  <Association Name="FK_mstCompany_mstState">
+    <End Type="JsoftWebModel.mstState" Role="mstState" Multiplicity="1" />
+    <End Type="JsoftWebModel.mstCompany" Role="mstCompany" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mstState">
+        <PropertyRef Name="StateID" />
+      </Principal>
+      <Dependent Role="mstCompany">
+        <PropertyRef Name="StateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

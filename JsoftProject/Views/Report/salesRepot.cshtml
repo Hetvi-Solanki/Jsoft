@@ -1,0 +1,24 @@
+﻿@using JsoftProject.Models
+@model List<ItemReportModel>
+
+
+@using JsoftProject.Models
+@using GridMvc.Html
+@using GridMvc.Sorting
+@using GridMvc.Filtering
+@using GridMvc
+
+<br />
+
+<h4 style="font-weight:bold; font-size:large; color:darkblue;">Total Profit: </h4>
+<h4 style="color: #2dbc2d; font-weight: 700">@ViewBag.Profit</h4>
+<br />
+
+@(Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(c => c.ItemName).Titled("<span style='font-size:large'>Item Name</span>");
+    columns.Add(c => c.TotalPurchaseAmount).Titled("<span style='font-size:large'>Total Purchase Amount</span>");
+    columns.Add(c => c.TotalSalesAmount).Titled("<span style='font-size:large'>Total Sales Amount</span>");
+    columns.Add(c => c.Profit).Titled("<span style='font-size:large'>Profit</span>");
+
+}).WithPaging(10).Sortable())

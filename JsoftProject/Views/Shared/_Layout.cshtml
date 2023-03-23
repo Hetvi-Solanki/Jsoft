@@ -1,0 +1,185 @@
+﻿@{ 
+    bool isLoggedIn = true;
+    if(string.IsNullOrWhiteSpace(User.Identity.Name))
+    {
+        isLoggedIn = false;
+    }
+}
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+   
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+<style>
+        /*#id1 {
+            width: 100%;
+            background-image: url("/auth_template/images/alyssa-hurley-IdU1Si3wJ-I-unsplash.jpg");*/
+            /*height: 700px;*/
+            /*height:100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }*/
+
+       /* #id1 {
+            width: 100%;
+            background-image: url("/auth_template/images/alyssa-hurley-IdU1Si3wJ-I-unsplash.jpg");
+            height: auto;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }*/
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        #id1 {
+            width: 100%;
+            min-height: 100vh;
+            background-image: url("/auth_template/images/alyssa-hurley-IdU1Si3wJ-I-unsplash.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+      
+      
+
+
+</style>
+    @Styles.Render("~/Content/linkcolor.css")
+</head>
+<body>
+
+
+
+    @*hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh*@
+
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+
+            <div class="navbar-header">
+
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <img src="~/auth_template/images/figist-co-JZs-_xFIDV0-unsplash.jpg" class="circular_image" height="50" width="50" />
+
+                @Html.ActionLink("Jsoft", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navfontcolor">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+
+                    <li>
+                        <div class="dropdown">
+                            <button class="dropbtn">
+                                Master
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-content">
+                                @Html.ActionLink("Item Group", "ViewDetails", "MenuItemGroup")
+                                @Html.ActionLink("Item", "ViewDetails", "Item")
+                                @Html.ActionLink("Daily Rate", "ViewDetailsDailyRate", "DailyRate")
+                                @Html.ActionLink("Tax", "ViewDetails", "Tax")
+                                @Html.ActionLink("Balance Sheet Group", "ViewDetails", "BalanceSheet")
+                                @Html.ActionLink("Accounts", "ViewDetails", "AccountMaster")
+                                
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="dropdown">
+                            <button class="dropbtn">
+                                Transaction
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-content">
+                                @*@Html.ActionLink("Purchase", "ViewDetails", "PurMerge")*@
+                                @Html.ActionLink("Purchase", "ViewDetails", "NewPurchase")
+                                @Html.ActionLink("Sales", "ViewDetails", "NewSale")
+
+                               
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="dropdown">
+                            <button class="dropbtn">
+                                Reports
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-content">
+                                @Html.ActionLink("Profit Report", "salesRepot", "Report")
+                                @Html.ActionLink("Cash Flow", "cashFlow", "Report")
+                               
+                            </div>
+                        </div>
+                    </li>
+
+                    @*<li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+
+                </ul>
+                <ul class="navstyle">
+                    @{
+                        if (isLoggedIn)
+                        {
+                            <li class="topnav-right">@Html.ActionLink("LogOut", "LogOut", "Account")</li>
+                            <li class="topnav-right">@Html.ActionLink(User.Identity.Name, "Index", "Home")</li>
+
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content" id="id1">
+        @RenderBody()
+        <hr />
+
+    </div>
+    <footer style="background-color:lightgray; text-align:center;">
+        <p>&copy; All Rights Reserved!!</p>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @RenderSection("styles", required: false)
+
+
+
+
+
+
+</body>
+</html>

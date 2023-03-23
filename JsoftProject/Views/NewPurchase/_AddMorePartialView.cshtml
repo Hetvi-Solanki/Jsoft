@@ -1,0 +1,118 @@
+﻿@model JsoftProject.Models.NewPurchaseModel
+@using JsoftProject.Models
+
+@{
+    Layout = null;
+}
+@using JsoftProject;
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<form action="/NewPurchase/AddMorePartialView" method="post" class="text-left form-validate">
+    <!-------"AddMoreList"----- this is AddMoreViewModel List Object wich is define ViewModel file -->
+    <div id="removeAddMoreDiv" class="col-xs-12 col-sm-12 form-group">
+        <div class="row">
+
+            <table>
+                <tr>
+                    <td>
+                        @Html.DropDownListFor(model => model.trnPurchaseItems[0].ItemID, new SelectList(ViewBag.ItemList, "ItemID", "ItemName"),
+                            htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.trnPurchaseItems[0].mstItem.ItemName, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(model => model.trnPurchaseItems[0].TaxID, new SelectList(ViewBag.Taxes, "TaxID", "TaxName"),
+                            htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.trnPurchaseItems[0].mstTax.TaxName, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.trnPurchaseItems[0].Pcs, new { htmlAttributes = new { @class = "form-control text-right" } })
+                        @Html.ValidationMessageFor(model => model.trnPurchaseItems[0].Pcs, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.trnPurchaseItems[0].GrossWt, new { htmlAttributes = new { @class = "form-control text-right" } })
+                        @Html.ValidationMessageFor(model => model.trnPurchaseItems[0], "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.trnPurchaseItems[0].NetWt, new { htmlAttributes = new { @class = "form-control text-right" } })
+                        @Html.ValidationMessageFor(model => model.trnPurchaseItems[0].NetWt, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.trnPurchaseItems[0].Mrp, new { htmlAttributes = new { @class = "form-control text-right" } })
+                        @Html.ValidationMessageFor(model => model.trnPurchaseItems[0].Mrp, "", new { @class = "text-danger" })
+                    </td>
+
+                    @* -------------------------------------------------------------------------------------- *@
+
+                    @*<td>
+                            @Html.EditorFor(model => model.trnPurchaseItems[0].Mrp, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.trnPurchaseItems[0].Mrp, "", new { @class = "text-danger" })
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.trnPurchaseItems[0].Mrp, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.trnPurchaseItems[0].Mrp, "", new { @class = "text-danger" })
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.trnPurchaseItems[0].Mrp, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.trnPurchaseItems[0].Mrp, "", new { @class = "text-danger" })
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.trnPurchaseItems[0].Mrp, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.trnPurchaseItems[0].Mrp, "", new { @class = "text-danger" })
+                        </td>*@
+
+
+                    @* -------------------------------------------------------------------------------------- *@
+
+
+
+                    <td>
+                        <div class="col-md-1">
+                            <button type="button" class="btn btn-danger btn-sm removeDiv">
+                                Remove
+                            </button>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="centered-div">
+                            <input type="submit" class="btn btn-success" value="Save" id="saveBtn" />
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+
+
+
+
+</form>
+
+
+<script>
+    $(function () {
+        $('#saveBtn').click(function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: '@Url.Action("AddMorePartialView")',
+                type: 'POST',
+                data: $('form').serialize(),
+                success: function (result) {
+                    
+                }
+            });
+        });
+    });
+</script>
+
+
+<script>
+    $(".removeDiv").click(function () {
+        $(this).parents("#removeAddMoreDiv").remove();
+    });
+
+</script>

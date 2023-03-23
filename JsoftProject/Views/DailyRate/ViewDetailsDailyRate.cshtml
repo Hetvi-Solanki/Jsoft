@@ -1,0 +1,125 @@
+﻿@model IEnumerable<JsoftProject.Models.mstDailyRate>
+
+@{
+    ViewBag.Title = "Daily Rate";
+}
+
+<h2>Daily Rate Details</h2>
+
+<p>
+    <h3> @Html.ActionLink("Add Daily Rate", "CreateDailyRate", null, new { @class = "btn btn-success", style = "float: right; font-size: large;" }) </h3>
+</p>
+
+<form asp-action="ViewDetailsDailyRate">
+    <label for="startDate">Start Date:</label>
+    <input type="date" id="startDate" name="startDate" value="@DateTime.Today.ToString("yyyy-MM-dd")" onchange="checkDate();">
+   
+    <label for="endDate">&nbsp;&nbsp;&nbsp;End Date:</label>
+    <input type="date" id="endDate" name="endDate" value="@DateTime.Today.ToString("yyyy-MM-dd")" onchange="checkDate();">
+    
+    <input type="submit" value="Filter">
+    <br />
+    <br />
+</form>
+
+@if (ViewBag.Message != null)
+{
+    <p>@ViewBag.Message</p>
+}
+else
+{
+    <table class="table">
+        <tr style="color:red; font-size:large;">
+            <th>
+                @Html.DisplayNameFor(x => x.RateDate)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.mstItemGroup.GroupName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemGroupID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchaseRate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SalesRate)
+            </th>
+
+            <th>Actions</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @String.Format("{0:dd-MM-yyyy}", item.RateDate)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.mstItemGroup.GroupName)
+                </td>
+                <td style="text-align: right">
+                    @Html.DisplayFor(modelItem => item.ItemGroupID)
+                </td>
+                <td style="text-align: right">
+                    @Html.DisplayFor(modelItem => item.PurchaseRate)
+                </td>
+                <td style="text-align: right">
+                    @Html.DisplayFor(modelItem => item.SalesRate)
+                </td>
+
+
+                <td>
+                    @Html.ActionLink("Edit", "EditDailyRate", "DailyRate", new { id = item.RateDate.ToString("dd-MM-yyyy") }, null) |
+                    @Html.ActionLink("Details", "DetailsDailyRate", "DailyRate", new { id = item.RateDate.ToString("dd-MM-yyyy") }, null) |
+                    @Html.ActionLink("Delete", "DeleteDailyRate", "DailyRate", new { id = item.RateDate.ToString("dd-MM-yyyy") }, null) |
+                    
+
+                </td>
+
+            </tr>
+        }
+
+    </table>
+}
+
+
+<script>
+    function checkDate() {
+        let selectedDate = new Date(document.getElementById("RateDate").value);
+        let today = new Date();
+        if (selectedDate > today) {
+            alert("Please select a date that is not in the future");
+            document.getElementById("RateDate").value = "";
+        }
+    }
+</script>
+
+
+<script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    today = yyyy + '-' + mm + '-' + dd;
+
+    document.getElementById("RateDate").setAttribute("max", today);
+</script>
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

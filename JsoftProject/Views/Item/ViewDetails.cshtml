@@ -1,0 +1,82 @@
+﻿@model IEnumerable<JsoftProject.Models.mstItem>
+
+@{
+    ViewBag.Title = "Items";
+}
+
+<h2>Items</h2>
+
+<p>
+    @Html.ActionLink("Add Item", "Create", null, new { @class = "btn btn-success", style = "float: right;" })
+</p>
+
+<br />
+
+<p>
+    @using(Html.BeginForm("ViewDetails","Item",FormMethod.Get))
+            {
+                <b>Search By: </b>
+                @Html.RadioButton("SearchBy","ItemName",true)<text> Item Name</text>
+                @Html.RadioButton("SearchBy","MetalType")<text>Metal</text>
+                <br/>
+                @Html.TextBox("search")
+                <input type="submit" value="Search" />
+            }
+</p>
+<table class="table">
+    <tr style="color:red; font-size:large;">
+        <th>
+            @Html.DisplayNameFor(model => model.mstItemGroup.mstMetalType.MetalTypeDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mstItemGroup.GroupName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShortName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+
+
+
+
+
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.mstItemGroup.mstMetalType.MetalTypeDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mstItemGroup.GroupName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ItemName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShortName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+
+
+
+
+
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ItemID }, new { @class = "btn btn-success" }) 
+            @Html.ActionLink("Details", "Details", new { id = item.ItemID }, new { @class = "btn btn-primary" }) 
+            @Html.ActionLink("Delete", "Delete", new { id = item.ItemID }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

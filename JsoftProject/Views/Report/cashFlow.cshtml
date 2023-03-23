@@ -1,0 +1,27 @@
+﻿@using JsoftProject.Models
+@model List<AccountReportModel>
+
+
+@using JsoftProject.Models
+@using GridMvc.Html
+@using GridMvc.Sorting
+@using GridMvc.Filtering
+@using GridMvc
+
+<br />
+
+<h4 style="font-weight:bold; color:darkblue;">Total Outstanding Amount: </h4>
+<h4 style="color: #2dbc2d; font-weight: 700">@ViewBag.TotalOutstanding</h4>
+<br />
+
+@(Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(c => c.AccountName).Titled("<span style='font-size:large'>Account</span>");
+    columns.Add(c => c.Cash).Titled("<span style='font-size:large'>Cash Amount</span>");
+    columns.Add(c => c.Cheque).Titled("<span style='font-size:large'>Cheque Amount</span>");
+    columns.Add(c => c.Outstanding).Titled("<span style='font-size:large'>Outstanding Amount</span>");
+
+
+
+
+}).WithPaging(10).Sortable())
